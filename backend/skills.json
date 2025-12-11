@@ -1,0 +1,79 @@
+[
+  {
+    "label": "JavaScript Essentials",
+    "type": "technical",
+    "level": "Basic",
+    "certified": true,
+    "cert": {
+      "issuer": "Microsoft",
+      "name": "TypeScript Developer Associate",
+      "date": "2024-05",
+      "url": "https://example.com/cert/typescript",
+      "image": "/analytics-dashboard.png"
+    },
+    "usage": "Used daily for frontend and server-side apps in production"
+  },
+  {
+    "label": "GDPR Compliance",
+    "type": "soft",
+    "level": "Advanced",
+    "certified": true,
+    "cert": {
+      "issuer": "Meta / Unofficial",
+      "name": "Advanced React & Next.js",
+      "date": "2024-03",
+      "url": "https://example.com/cert/react-next",
+      "image": "/analytics-dashboard.png"
+    },
+    "usage": "Building SPA/SSR apps, App Router, server components, and SEO-friendly UIs"
+  },
+  {
+    "label": "Power BI",
+    "type": "tool",
+    "level": "Intermediate",
+    "certified": true,
+    "cert": {
+      "issuer": "Microsoft",
+      "name": "Power BI Data Analyst",
+      "date": "2023-11",
+      "url": "https://example.com/cert/powerbi",
+      "image": "/analytics-dashboard.png"
+    },
+    "usage": "Designing internal dashboards and interactive business reports"
+  },
+  {
+    "label": "Python",
+    "type": "language",
+    "level": "Advanced",
+    "certified": false,
+    "usage": "Automation scripts, ML prototyping, small backend services"
+  },
+  {
+    "label": "Docker",
+    "type": "tool",
+    "level": "Intermediate",
+    "certified": false,
+    "usage": "Containerizing services for local dev and simple deployments"
+  },
+  {
+    "label": "PostgreSQL",
+    "type": "technical",
+    "level": "Intermediate",
+    "certified": false,
+    "usage": "Designing schemas, writing queries, and optimizing simple indexes"
+  },
+  {
+    "label": "English",
+    "type": "language",
+    "level": "Fluent",
+    "certified": false,
+    "usage": "Daily communication, documentation, and technical discussions"
+  },
+  {
+    "label": "Team Communication",
+    "type": "soft",
+    "level": "Strong",
+    "certified": false,
+    "usage": "Leading small squads, async updates, cross-functional collaboration"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "title": "AI Content Generator",
+    "desc": "Intelligent system generating personalized content using fine-tuned LLMs",
+    "tags": ["Next.js", "Python", "OpenAI API"],
+    "image": "/ai-content-generation-interface.jpg",
+    "blogSlug": "ai-content-generator"
+  },
+  {
+    "title": "Distributed Cache System",
+    "desc": "High-performance Redis-based caching layer for microservices",
+    "tags": ["Go", "Redis", "gRPC"],
+    "image": "/distributed-system-architecture.png",
+    "blogSlug": "distributed-cache-system"
+  },
+  {
+    "title": "Mobile Analytics Dashboard",
+    "desc": "Real-time analytics platform for mobile app metrics",
+    "tags": ["Flutter", "Firebase", "React"],
+    "image": "/analytics-dashboard.png",
+    "blogSlug": "mobile-analytics-dashboard"
+  },
+  {
+    "title": "Research Paper Indexer",
+    "desc": "Semantic search engine for ML research papers using embeddings",
+    "tags": ["Python", "Vector DB", "FastAPI"],
+    "image": "/research-paper-search-interface.jpg",
+    "blogSlug": "research-paper-indexer"
+  }
+]

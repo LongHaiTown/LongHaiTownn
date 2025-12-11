@@ -1,0 +1,130 @@
+/* MEDIUM STYLE — CLEAN, ELEGANT, READABLE */
+.prose-medium {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 1.1rem;
+  line-height: 1.85;
+}
+
+.prose-medium h1,
+.prose-medium h2,
+.prose-medium h3 {
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.prose-medium h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.prose-medium h2 {
+  font-size: 1.7rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.prose-medium h3 {
+  font-size: 1.35rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-medium p {
+  margin: 1.25rem 0;
+  color: #2e2e2e;
+}
+
+.dark .prose-medium p {
+  color: #d1d5db;
+}
+
+/* Medium blockquote style */
+.prose-medium blockquote {
+  font-style: italic;
+  border-left: 4px solid #e5e7eb;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: #555;
+}
+
+.dark .prose-medium blockquote {
+  color: #d1d5db;
+  border-left-color: #334155;
+}
+
+/* Code blocks */
+.prose-medium pre {
+  background: #0f172a !important;
+  color: #fff;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  overflow-x: auto;
+  border: 1px solid #1e293b;
+  margin: 1.5rem 0;
+}
+
+.prose-medium code:not(pre code) {
+  background: rgba(0,0,0,0.05);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.dark .prose-medium code:not(pre code) {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Images */
+.prose-medium img {
+  border-radius: 0.75rem;
+  margin: 2rem 0;
+  object-fit: cover;
+}
+
+/* Lists */
+.prose-medium ul,
+.prose-medium ol {
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Table */
+.prose-medium table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+}
+
+.prose-medium th,
+.prose-medium td {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.75rem;
+}
+
+.dark .prose-medium th,
+.dark .prose-medium td {
+  border-bottom-color: #334155;
+}
+
+/* Horizontal line */
+.prose-medium hr {
+  border-color: #e5e7eb;
+  margin: 2rem 0;
+}
+
+.dark .prose-medium hr {
+  border-color: #334155;
+}
+
+/* Links (Medium-like) */
+.prose-medium a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: #111827;
+}
+
+.dark .prose-medium a {
+  color: #f3f4f6;
+}

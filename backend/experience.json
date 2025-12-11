@@ -1,0 +1,39 @@
+[
+{
+  "title": "System & Network Engineer",
+  "company": "Ozitem",
+  "period": "2024 - Present",
+  "desc": "Managing and optimizing corporate network infrastructure to ensure high availability and security. Implementing ITSM practices and internal automation initiatives.",
+  "highlights": [
+    "Administering virtualized systems, VMware ESXi environments, and enterprise network infrastructure.",
+    "Diagnosing and resolving incidents to maintain service continuity across production systems.",
+    "Implementing ITSM workflows and documentation to improve operational efficiency.",
+    "Exploring automation and AI-driven solutions (Power BI, Python, internal tools) to modernize infrastructure monitoring and reporting."
+  ],
+  "tech": ["VMware", "Veeam", "Windows Server", "Networking", "ITSM", "Power BI", "Automation"]
+}
+,
+{
+  "title": "Computer Science Student",
+  "company": "HUTECH University",
+  "period": "2022 - Present",
+  "desc": "Learning foundational and core concepts in computer science, software development, and modern computing systems.",
+  "highlights": [
+    "Studying core CS subjects such as data structures, algorithms, operating systems, and computer networks.",
+    "Learning software engineering principles, design patterns, and full-stack development basics.",
+    "Gaining hands-on experience with databases, distributed systems fundamentals, and system design concepts.",
+    "Exploring introductory AI, machine learning, and mathematical foundations for computing."
+  ],
+  "tech": [
+    "Python",
+    "Java",
+    "Data Structures",
+    "Algorithms",
+    "Operating Systems",
+    "Computer Networks",
+    "Databases",
+    "Software Engineering"
+  ]
+}
+
+]
