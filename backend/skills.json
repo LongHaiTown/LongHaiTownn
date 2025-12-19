@@ -1,44 +1,51 @@
 [
-  {
-    "label": "JavaScript Essentials",
+    {
+    "label": "Network Basics",
     "type": "technical",
     "level": "Basic",
     "certified": true,
     "cert": {
-      "issuer": "Microsoft",
-      "name": "TypeScript Developer Associate",
-      "date": "2024-05",
+      "issuer": "CISCO",
+      "name": "Network Basics",
+      "date": "2025-12",
       "url": "https://example.com/cert/typescript",
-      "image": "/analytics-dashboard.png"
+      "image": "/certifications/Networking_Basics_page-0001.jpg"
     },
     "usage": "Used daily for frontend and server-side apps in production"
   },
   {
-    "label": "GDPR Compliance",
-    "type": "soft",
-    "level": "Advanced",
+    "label": "JavaScript Essentials 1",
+    "type": "technical",
+    "level": "Basic",
     "certified": true,
     "cert": {
-      "issuer": "Meta / Unofficial",
-      "name": "Advanced React & Next.js",
-      "date": "2024-03",
-      "url": "https://example.com/cert/react-next",
-      "image": "/analytics-dashboard.png"
+      "issuer": "CISCO",
+      "name": "JavaScript Essentials 1",
+      "date": "2024-11",
+      "url": "https://example.com/cert/typescript",
+      "image": "/certifications/JavaScript_Essentials_1_page-0001.jpg"
     },
-    "usage": "Building SPA/SSR apps, App Router, server components, and SEO-friendly UIs"
+    "usage": "Used daily for frontend and server-side apps in production"
+  },
+    {
+    "label": "JavaScript Essentials 2",
+    "type": "technical",
+    "level": "Basic",
+    "certified": true,
+    "cert": {
+      "issuer": "CISCO",
+      "name": "JavaScript Essentials 2",
+      "date": "2025-11",
+      "url": "https://example.com/cert/typescript",
+      "image": "/certifications/JavaScript_Essentials_2_page-0001.jpg"
+    },
+    "usage": "Used daily for frontend and server-side apps in production"
   },
   {
     "label": "Power BI",
     "type": "tool",
     "level": "Intermediate",
-    "certified": true,
-    "cert": {
-      "issuer": "Microsoft",
-      "name": "Power BI Data Analyst",
-      "date": "2023-11",
-      "url": "https://example.com/cert/powerbi",
-      "image": "/analytics-dashboard.png"
-    },
+    "certified": false,
     "usage": "Designing internal dashboards and interactive business reports"
   },
   {

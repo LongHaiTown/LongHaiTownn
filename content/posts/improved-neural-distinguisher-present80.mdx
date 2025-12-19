@@ -1,0 +1,143 @@
+---
+title: "Learning to Distinguish: A Neural Cryptanalysis Study on PRESENT-80"
+date: "2025-12-XX"
+readTime: "8 min"
+category: "Research"
+tags:
+  - Cryptanalysis
+  - Neural Cryptography
+  - Research Project
+heroImage: "/projects/Improved_Neural_Distinguisher_for_PRESENT80_using_Inception_and_Efficient_Channel_Attention_in_Related-Key_Multi-Pair_Setting.png"
+
+summary: "An overview of my first research paper in cryptanalysis, exploring how neural distinguishers can be strengthened through related-key settings and multiple ciphertext pairs."
+---
+
+### Why this paper mattered to me
+
+This was my first step into cryptanalysis research.
+It was also the first time my work was reviewed, challenged, and ultimately accepted by a research community.
+
+---
+
+# Learning to Distinguish: A Neural Cryptanalysis Study on PRESENT-80
+
+This post introduces my first research work in the field of cryptanalysis, and my first paper accepted at an academic conference.  
+While the technical details live in the paper itself, this article focuses on the **research question**, the **core ideas**, and the **lessons learned** from the study.
+
+---
+
+## Why distinguishers matter
+
+Modern block ciphers are designed to look random.
+If an encryption algorithm is secure, its outputs should be statistically indistinguishable from random permutations.
+
+> In cryptanalysis, the ability to distinguish is often the first signal that structure still exists.
+
+Cryptanalysis often begins not with breaking keys, but with asking a simpler question:
+*can we still tell the cipher apart from randomness?*
+
+A distinguisher does not recover the key.
+Instead, it reveals whether traces of structure remain after several rounds of encryption.
+
+In recent years, **neural differential cryptanalysis** has emerged as a way to learn such traces automatically, without explicitly constructing differential characteristics.
+
+---
+
+## The limits of single-pair learning
+
+Most early neural distinguishers operate on a single ciphertext pair at a time.  
+This approach, popularized by Gohr’s work, demonstrated that deep neural networks can learn subtle statistical biases left by differential propagation.
+
+However, as the number of rounds increases, the signal in a single ciphertext pair becomes weak.  
+Noise dominates, and learning becomes unreliable.
+
+This limitation raises a natural question:  
+*what if we let the model observe more structure at once?*
+
+---
+
+## Two sources of additional structure
+
+This research explores two complementary ways to enrich the learning signal.
+
+The first is the **related-key setting**.  
+Instead of encrypting under a single secret key, we allow encryption under two keys that differ by a fixed, known difference.  
+This model has a long history in classical cryptanalysis and exposes interactions between the cipher and its key schedule.
+
+The second is the use of **multiple ciphertext pairs per sample**.  
+Rather than classifying pairs independently, the model observes several related encryptions at once, allowing it to aggregate weak signals into more robust patterns.
+![Data presentation](/blog/RKNDMCP/Data_Presentation.png)
+
+Together, these ideas shift the task from recognizing isolated artifacts to identifying **structured correlations**.
+
+---
+
+## PRESENT-80 as a testbed
+
+The study focuses on the lightweight block cipher PRESENT-80.  
+Its simple structure and deterministic key schedule make it a suitable candidate for exploring related-key effects in neural settings.
+
+Rather than targeting full key recovery, the goal is deliberately modest:  
+to evaluate whether richer input representations and lightweight architectural choices can extend distinguishability to deeper rounds.
+
+---
+
+## Architecture as a design choice
+
+Instead of relying on very deep or heavy models, this work emphasizes **expressive structure with limited complexity**.
+
+The proposed neural distinguisher combines three ideas.
+
+An Inception-style convolutional block processes the input at multiple scales simultaneously, capturing both local and broader statistical patterns across ciphertext pairs.
+
+Efficient Channel Attention is used to emphasize informative feature channels without introducing significant overhead.  
+This choice reflects a broader design principle: attention should sharpen signals, not dominate the architecture.
+
+Residual connections provide stability and depth without sacrificing trainability.
+![Model Architecture](/blog/RKNDMCP/Model_Architecture.png)
+The result is a compact model designed to extract as much structure as possible from limited and noisy cryptographic data.
+
+---
+
+## What the experiments reveal
+
+The experimental results consistently show that richer structure helps.
+
+Using multiple ciphertext pairs improves distinguishability across all tested rounds.  
+Introducing related-key differences further amplifies this effect.
+
+![results](/blog/RKNDMCP/results.png)
+
+Compared to prior related-key neural distinguishers, the proposed approach achieves higher accuracy from rounds 7 to 9 and, more importantly, maintains distinguishability beyond the training range.
+
+A model trained at round 9 remains slightly but consistently above random guessing up to round 15.  
+While this does not constitute a practical attack, it indicates that the learned features are not purely round-specific.
+
+In cryptanalysis, this persistence matters.
+
+---
+
+## What this work does—and does not—claim
+
+This research does not break PRESENT-80.  
+It does not propose a new key-recovery attack.
+
+What it shows is more restrained, but still meaningful:  
+that **structured inputs and careful architectural choices can push neural distinguishers deeper**, even under constrained settings.
+
+It also highlights the limits of neural approaches.  
+Beyond a certain number of rounds, diffusion overwhelms learnable structure, even in related-key scenarios.
+
+Understanding where learning fails is as important as celebrating where it succeeds.
+
+---
+
+
+## Closing thought
+
+> A distinguisher does not tell us how to break a cipher.  
+> It tells us whether there is still something left to understand.
+
+This project was about learning how to listen to those faint signals—and knowing when they finally disappear.
+
+---

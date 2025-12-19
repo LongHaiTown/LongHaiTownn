@@ -21,7 +21,7 @@ export default function BlogClient({ posts }: Props) {
     return matchesCategory && matchesSearch
   })
 
-  const postsPerPage = 3
+  const postsPerPage = 33
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage)
   const paginatedPosts = filteredPosts.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
 

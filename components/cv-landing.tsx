@@ -187,7 +187,7 @@ export function CVLanding({ avatars, hero, skills, experience, projects }: CVLan
       <section id="projects" className="py-24 px-6 bg-slate-50 dark:bg-slate-900">
         <div className="max-w-6xl mx-auto">
           <motion.div {...fadeInUp} className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Featured Projects</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Featured Researches & Projects</h2>
             <div className="h-1 w-20 bg-slate-400 dark:bg-slate-600 rounded-full"></div>
           </motion.div>
 

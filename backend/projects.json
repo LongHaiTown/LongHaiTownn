@@ -1,30 +1,17 @@
 [
   {
-    "title": "AI Content Generator",
-    "desc": "Intelligent system generating personalized content using fine-tuned LLMs",
-    "tags": ["Next.js", "Python", "OpenAI API"],
-    "image": "/ai-content-generation-interface.jpg",
-    "blogSlug": "ai-content-generator"
+    "title": "CORHUOPM: CORRELATED HIGH UTILITY OCCUPANCY PATTERN MINING ",
+    "desc": "A novel approach to mine correlated high utility occupancy patterns in transactional databases",
+    "tags": ["Research Paper", "Data Mining", "AI"],
+    "image": "/projects/CNTT_27_My_CorHUOPM_2024-2025_page-0001_full.jpg",
+    "blogSlug": "corhuopm-pattern-mining"
   },
   {
-    "title": "Distributed Cache System",
-    "desc": "High-performance Redis-based caching layer for microservices",
-    "tags": ["Go", "Redis", "gRPC"],
-    "image": "/distributed-system-architecture.png",
-    "blogSlug": "distributed-cache-system"
-  },
-  {
-    "title": "Mobile Analytics Dashboard",
-    "desc": "Real-time analytics platform for mobile app metrics",
-    "tags": ["Flutter", "Firebase", "React"],
-    "image": "/analytics-dashboard.png",
-    "blogSlug": "mobile-analytics-dashboard"
-  },
-  {
-    "title": "Research Paper Indexer",
-    "desc": "Semantic search engine for ML research papers using embeddings",
-    "tags": ["Python", "Vector DB", "FastAPI"],
-    "image": "/research-paper-search-interface.jpg",
-    "blogSlug": "research-paper-indexer"
+    "title": "Improved Neural Distinguisher for PRESENT80 using Inception and Efficient Channel Attention in Related-Key Multi-Pair Setting",
+    "desc": "A research paper on enhancing neural distinguishers for the PRESENT80 cipher using advanced deep learning techniques",
+    "tags": ["Research Paper", "Cryptography", "Machine Learning","Cryptanalysis"],
+    "image": "/projects/Improved_Neural_Distinguisher_for_PRESENT80_using_Inception_and_Efficient_Channel_Attention_in_Related-Key_Multi-Pair_Setting.png",
+    "blogSlug": "improved-neural-distinguisher-present80"
   }
+ 
 ]

@@ -86,10 +86,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       const cls = (node as any).properties?.className || []
       ;(node as any).properties = { ...(node as any).properties, className: [...cls, 'highlighted'] }
     },
-    onVisitHighlightedWord(node) {
-      const cls = (node as any).properties?.className || []
-      ;(node as any).properties = { ...(node as any).properties, className: [...cls, 'word'] }
-    },
+
   }
 
   const mdxComponents = {
@@ -125,20 +122,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                   {/* If you later generate a TOC, render items here */}
                   <span className="block text-sm text-muted-foreground">Updating…</span>
                 </nav>
-              </div>
-              <div className="flex gap-3">
-                <button
-                  className="flex-1 p-2.5 rounded-lg bg-muted hover:bg-secondary transition-colors"
-                  title="Share"
-                >
-                  Share
-                </button>
-                <button
-                  className="flex-1 p-2.5 rounded-lg bg-muted hover:bg-secondary transition-colors"
-                  title="Save"
-                >
-                  Save
-                </button>
               </div>
             </div>
           </aside>
@@ -217,24 +200,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 }}
               />
             </div>
-
-            {/* Footer-like author + related (optional, mirrors slug.tsx structure) */}
-            <section className="mt-16 pt-12 border-t border-border">
-              <div className="flex gap-6 items-start">
-                <img
-                  src={"/placeholder.svg"}
-                  alt={"Author"}
-                  className="w-20 h-20 rounded-full object-cover"
-                />
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold mb-1">Author</h3>
-                  <p className="text-sm text-muted-foreground mb-3">—</p>
-                  <p className="text-foreground leading-relaxed mb-4">
-                    Add author info via frontmatter if desired.
-                  </p>
-                </div>
-              </div>
-            </section>
           </div>
         </div>
       </article>
