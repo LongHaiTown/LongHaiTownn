@@ -227,11 +227,8 @@ export default function BlogClient({ posts }: Props) {
 
       <footer className="py-8 px-6 border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <p className="text-slate-600 dark:text-slate-400 text-sm">© 2025 Alex Morgan. All rights reserved.</p>
-          <div className="flex gap-4">
-            <a href="#" className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 transition-colors text-sm">Privacy</a>
-            <a href="#" className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 transition-colors text-sm">Terms</a>
-          </div>
+          <p className="text-slate-600 dark:text-slate-400 text-sm">© 2025 Than Huynh Van.</p>
+
         </div>
       </footer>
     </div>

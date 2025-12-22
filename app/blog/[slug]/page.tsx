@@ -207,21 +207,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-border mt-20">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <p className="text-muted-foreground text-sm">© 2025 Alex Morgan. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a
-              href="#"
-              className="text-muted-foreground hover:text-primary transition-colors text-sm"
-            >
-              Privacy
-            </a>
-            <a
-              href="#"
-              className="text-muted-foreground hover:text-primary transition-colors text-sm"
-            >
-              Terms
-            </a>
-          </div>
+          <p className="text-muted-foreground text-sm">© 2025 Than Huynh Van.</p>
+       
         </div>
       </footer>
     </div>

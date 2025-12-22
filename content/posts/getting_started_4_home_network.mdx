@@ -1,0 +1,87 @@
+---
+title: "Getting Started with Networking (4): The Home Network"
+date: "2025-12-XX"
+readTime: "7 min"
+category: "Networking"
+tags:
+  - Networking
+  - Home Network
+  - Fundamentals
+heroImage: "/blog/getting_started_4_home_network/Homenetwork.jpg"
+summary: "An introduction to the home network, focusing on common devices, network boundaries, and how traffic moves between private and external networks."
+---
+
+## What Is a Home Network?
+
+A home network is a small network that connects devices within a household to each other and to the Internet.Its primary purpose is to allow multiple devices to share a single Internet connection while also enabling local communication.
+
+In a home environment, devices such as computers, smartphones, televisions, and smart appliances are expected to connect seamlessly.The home network provides the structure that makes this possible.
+![P2p](/blog/getting_started_4_home_network/WLAN.jpg)
+Unlike a single device directly connected to the Internet, a home network introduces coordination. Traffic must be managed, shared, and directed so that devices can communicate both locally and externally.
+
+Because of this, a home network is more than just Internet access. It is a complete network in its own right, operating at a small scale but following the same basic principles as larger networks.
+
+## Core Devices in a Home Network
+
+A home network is built from a small number of core devices, each with a specific role. In many households, these roles are combined into a single physical unit, but conceptually they remain distinct.
+
+![Home network devices](/blog/getting_started_4_home_network/devices.png)
+
+The **modem** is the device that connects the home network to the Internet Service Provider (ISP). It translates signals from the provider’s network into a form that can be used by devices inside the home.
+
+The **router** is responsible for directing traffic between devices and networks. It determines where data should go, whether the destination is another device inside the home or an external service on the Internet.
+
+The **wireless access point** enables devices to connect to the home network without physical cables. It broadcasts a wireless signal that nearby devices can use to join the network.
+
+**End devices** are the devices that users interact with directly.These include computers, smartphones, tablets, smart televisions, printers, and other connected devices.
+
+Although many home routers combine the **modem**, **router**, and **wireless access point** into one unit, understanding their individual roles helps clarify how the home network functions as a whole.
+
+## Network Boundary
+
+A home network has a clear boundary that separates devices inside the home from external networks such as the Internet. This boundary defines which devices belong to the private network and how traffic is allowed to move in and out.
+
+Understanding this boundary helps explain how devices communicate locally, how Internet access works, and why certain network behaviors occur.
+
+### Inside vs Outside the Home Network
+
+Devices inside the home network form a private internal network. These devices can usually communicate directly with each other without leaving the home network.
+
+External networks include the Internet and other networks beyond the household. Communication with these networks requires traffic to pass through a specific exit point.
+
+The distinction between inside and outside is conceptual rather than physical.It exists to organize traffic flow and to separate private communication from public networks.
+
+### The Default Gateway
+
+The **default gateway** is the device that routes traffic from the home network to external networks. When a device needs to communicate with a destination outside the local network, it sends the traffic to the default gateway.
+
+From the perspective of end devices, the default gateway represents the path to everything beyond the home network. Devices do not need to know the details of external networks, only where to send outgoing traffic.
+![Home network devices](/blog/getting_started_4_home_network/defaultgateway.jpg)
+
+In a home network, the **router** typically acts as the boundary device. It connects the internal network to the Internet and manages traffic moving between them. The router decides whether traffic should remain inside the home network or be forwarded to an external destination.
+It also plays a basic role in separating internal devices from direct exposure to the Internet. By serving as both a connector and a boundary, the router allows home networks to function as private networks while still accessing public services.
+## Local vs Internet Communication
+
+In a home network, not all communication follows the same path. Some data exchanges happen entirely inside the network, while others must cross the network boundary and reach external networks. The distinction depends on where the destination is located.
+
+**Local communication** refers to data exchanged between devices inside the home network.
+
+This traffic remains within the internal network and does not pass through the default gateway. Devices such as computers, printers, and smart TVs can communicate directly as long as they belong to the same network.
+
+**Internet communication** occurs when a device needs to reach a service outside the home network.
+
+In this case, traffic is sent to the router, which forwards it through the default gateway to the Internet. Accessing websites, streaming online content, or sending emails all require this type of communication.
+
+For example, when a laptop streams a video from a smart TV inside the same home, the data stays local.
+
+When that same laptop streams a video from an online service, the traffic leaves the home network, passes through the router, and depends on the Internet connection. Understanding this difference helps explain why some activities continue to work even when Internet access is unavailable.
+
+## Closing Thought
+
+A home network is more than a collection of connected devices. It is a small but complete network, with defined roles, clear boundaries, and distinct communication paths.
+
+By understanding the purpose of common devices, the separation between internal and external networks, and the difference between local and Internet communication, everyday network behavior becomes easier to interpret.
+
+This foundational view of the home network provides a practical reference point.It helps explain common connectivity issues and prepares readers to explore more advanced networking concepts with greater clarity.
+
+---

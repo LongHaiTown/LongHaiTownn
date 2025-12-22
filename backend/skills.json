@@ -1,5 +1,18 @@
 [
     {
+    "label": "Understanding Research Methods",
+    "type": "research",
+    "level": "Basic",
+    "certified": true,
+    "cert": {
+      "issuer": "Coursera",
+      "name": "Understanding Research Methods",
+      "date": "2025-12",
+      "image": "/certifications/Coursera_course_Understand_Research_methods.jpg"
+    },
+    "usage": "Researching best practices and methodologies for project planning"
+  },
+    {
     "label": "Network Basics",
     "type": "technical",
     "level": "Basic",
