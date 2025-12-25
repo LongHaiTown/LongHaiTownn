@@ -21,7 +21,7 @@
       "issuer": "CISCO",
       "name": "Network Basics",
       "date": "2025-12",
-      "url": "https://example.com/cert/typescript",
+      
       "image": "/certifications/Networking_Basics_page-0001.jpg"
     },
     "usage": "Used daily for frontend and server-side apps in production"
@@ -34,8 +34,7 @@
     "cert": {
       "issuer": "CISCO",
       "name": "JavaScript Essentials 1",
-      "date": "2024-11",
-      "url": "https://example.com/cert/typescript",
+      "date": "2025-11",
       "image": "/certifications/JavaScript_Essentials_1_page-0001.jpg"
     },
     "usage": "Used daily for frontend and server-side apps in production"
@@ -49,7 +48,6 @@
       "issuer": "CISCO",
       "name": "JavaScript Essentials 2",
       "date": "2025-11",
-      "url": "https://example.com/cert/typescript",
       "image": "/certifications/JavaScript_Essentials_2_page-0001.jpg"
     },
     "usage": "Used daily for frontend and server-side apps in production"
