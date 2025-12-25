@@ -1,4 +1,4 @@
-# LongHaiTown — Tổng quan dự án
+# LongHaiTown - Tổng quan dự án
 
 ## Mô tả ngắn
 Dự án này là một trang web cá nhân/portfolio/blog được xây dựng bằng Next.js (App Router) + TypeScript, dùng MDX cho nội dung bài viết, Tailwind CSS cho styling và một tập hợp component UI tái sử dụng.
@@ -15,13 +15,13 @@ Dự án này là một trang web cá nhân/portfolio/blog được xây dựng 
 Phiên bản chính được sử dụng được liệt kê trong `package.json` (Next, React, v.v.).
 
 ## Cấu trúc thư mục chính
-- `app/` — mã nguồn Next.js (App Router), gồm layout và trang chính.
-- `components/` — các component UI tuỳ chỉnh (header, theme provider, skills, v.v.).
-- `ui/` — thư viện các component UI nhỏ dùng lại (button, dialog, toast, v.v.).
-- `content/posts/` — bài viết MDX/Markdown (chứa nội dung blog).
-- `backend/` — JSON dữ liệu tĩnh (projects, skills, experience, hero, ...).
-- `lib/` — helper/utility (ví dụ `lib/backend.ts`, `lib/posts.ts`).
-- `public/` — tài nguyên tĩnh (hình ảnh, icons, media).
+- `app/` - mã nguồn Next.js (App Router), gồm layout và trang chính.
+- `components/` - các component UI tuỳ chỉnh (header, theme provider, skills, v.v.).
+- `ui/` - thư viện các component UI nhỏ dùng lại (button, dialog, toast, v.v.).
+- `content/posts/` - bài viết MDX/Markdown (chứa nội dung blog).
+- `backend/` - JSON dữ liệu tĩnh (projects, skills, experience, hero, ...).
+- `lib/` - helper/utility (ví dụ `lib/backend.ts`, `lib/posts.ts`).
+- `public/` - tài nguyên tĩnh (hình ảnh, icons, media).
 
 ## Tính năng chính
 - Hỗ trợ viết bài bằng MDX, có thể chèn React component trong nội dung.
@@ -45,10 +45,10 @@ npm run dev
 ```
 
 Lệnh hữu ích:
-- `npm run dev` / `pnpm dev` — chạy môi trường phát triển
-- `npm run build` — build production
-- `npm start` — chạy production (sau build)
-- `npm run lint` — kiểm tra eslint
+- `npm run dev` / `pnpm dev` - chạy môi trường phát triển
+- `npm run build` - build production
+- `npm start` - chạy production (sau build)
+- `npm run lint` - kiểm tra eslint
 
 ## Thêm nội dung (bài viết)
 - Bài viết nằm trong `content/posts/` dưới dạng `.mdx` hoặc `.md`.

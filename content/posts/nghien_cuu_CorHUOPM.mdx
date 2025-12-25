@@ -8,7 +8,8 @@ tags:
   - Pattern Mining
   - Research Project
 heroImage: "/projects/CNTT_27_My_CorHUOPM_2024-2025_page-0001_full.jpg"
-summary: "Một bài viết giới thiệu về CorHUOPM — thuật toán kết hợp yếu tố correlation vào High Utility Occupancy Pattern Mining để tìm ra các pattern có ý nghĩa và dễ diễn giải hơn."
+summary: "Một bài viết giới thiệu về CorHUOPM - thuật toán kết hợp yếu tố correlation vào High Utility Occupancy Pattern Mining để tìm ra các pattern có ý nghĩa và dễ diễn giải hơn."
+lang: "vi"
 ---
 
 ### Vì sao bài báo này quan trọng với mình
@@ -18,7 +19,7 @@ summary: "Một bài viết giới thiệu về CorHUOPM — thuật toán kết
 
 > Trong pattern mining, tìm được *pattern quan trọng* không có nghĩa là tìm được *pattern có ý nghĩa*.
 
-Bài viết này giới thiệu **CorHUOPM** — một nghiên cứu xuất phát từ một câu hỏi rất đơn giản nhưng dai dẳng:  
+Bài viết này giới thiệu **CorHUOPM** - một nghiên cứu xuất phát từ một câu hỏi rất đơn giản nhưng dai dẳng:  
 *khi một pattern có vẻ “giá trị” trong dữ liệu, liệu nó có thực sự đại diện cho một mối quan hệ có ý nghĩa hay không?*
 
 Thay vì đi sâu vào toàn bộ chi tiết kỹ thuật của bài báo, mình sẽ tập trung vào **động cơ nghiên cứu**, **ý tưởng cốt lõi**, và **những phát hiện chính** của công trình này.
@@ -38,7 +39,7 @@ Tuy nhiên, ngay cả với cải tiến này, vẫn còn một hạn chế lớ
 Một pattern có thể đạt utility cao nhưng lại **ít liên hệ thực sự** giữa các item.
 
 Các item có thể xuất hiện cùng nhau đủ nhiều để vượt qua ngưỡng utility, nhưng vẫn không tạo thành một mối quan hệ chặt chẽ hoặc dễ diễn giải.  
-Trong thực tế — đặc biệt là market basket analysis — những pattern như vậy rất khó bảo vệ hoặc ra quyết định dựa trên chúng.
+Trong thực tế - đặc biệt là market basket analysis - những pattern như vậy rất khó bảo vệ hoặc ra quyết định dựa trên chúng.
 
 
 
@@ -85,7 +86,7 @@ Nó vẫn dựa trên cấu trúc **UO-List** và chiến lược tìm kiếm de
 Điểm khác biệt nằm ở **mức độ pruning các pattern không tiềm năng**.
 
 Correlation-based pruning hoạt động song song với utility-occupancy bound.  
-Những pattern không đạt yêu cầu correlation sẽ bị loại sớm — trước khi phải tính toán tốn kém.
+Những pattern không đạt yêu cầu correlation sẽ bị loại sớm - trước khi phải tính toán tốn kém.
 
 Kết quả không chỉ là **ít pattern hơn**, mà còn là một **bộ pattern có chất lượng khác hẳn**.
 
@@ -97,14 +98,14 @@ Các thí nghiệm được thực hiện trên nhiều bộ dữ liệu thực 
 Kết quả cho thấy ba xu hướng rõ rệt.
 
 Thứ nhất, CorHUOPM tạo ra **số lượng pattern ít hơn đáng kể so với HUOPM**.  
-Đây không phải là sự “mất mát”, mà là sự **tinh lọc** — các pattern còn lại chặt chẽ và dễ diễn giải hơn.
+Đây không phải là sự “mất mát”, mà là sự **tinh lọc** - các pattern còn lại chặt chẽ và dễ diễn giải hơn.
 
 Thứ hai, **việc chọn thước đo correlation rất quan trọng**.  
 AllConfidence cho một sự cân bằng tốt giữa số lượng và độ gắn kết.  
 Bond nghiêm ngặt hơn, làm bộ pattern gọn và rõ ràng hơn.
 
 Thứ ba, dù bổ sung ràng buộc, CorHUOPM thường **chạy nhanh hơn HUOPM**.  
-Nhờ pruning hiệu quả, rất nhiều nhánh tìm kiếm được loại bỏ sớm — đặc biệt ở ngưỡng cao.
+Nhờ pruning hiệu quả, rất nhiều nhánh tìm kiếm được loại bỏ sớm - đặc biệt ở ngưỡng cao.
 
 Nhìn chung, việc đưa correlation vào không chỉ **cải thiện chất lượng pattern**, mà còn **tăng hiệu năng tính toán**.
 
@@ -131,7 +132,7 @@ Hướng phát triển tiếp theo có thể gồm:
 - hỗ trợ thêm các thước đo correlation khác
 - áp dụng cho **sequential / temporal pattern mining**
 
-Mỗi hướng đi đều đặt ra câu hỏi mới về **mối quan hệ giữa meaning — utility — structure trong dữ liệu**.
+Mỗi hướng đi đều đặt ra câu hỏi mới về **mối quan hệ giữa meaning - utility - structure trong dữ liệu**.
 
 
 ## Closing thought
@@ -139,6 +140,6 @@ Mỗi hướng đi đều đặt ra câu hỏi mới về **mối quan hệ gi�
 > Trong pattern mining, “relevance” không chỉ là câu chuyện của con số.  
 > Nó còn là câu chuyện của mối quan hệ.
 
-CorHUOPM là một nỗ lực để làm rõ những mối quan hệ đó — và đưa các pattern lại gần hơn với cách con người thực sự suy nghĩ về dữ liệu.
+CorHUOPM là một nỗ lực để làm rõ những mối quan hệ đó - và đưa các pattern lại gần hơn với cách con người thực sự suy nghĩ về dữ liệu.
 
 ---

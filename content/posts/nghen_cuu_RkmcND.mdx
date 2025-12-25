@@ -10,6 +10,7 @@ tags:
 heroImage: "/projects/Improved_Neural_Distinguisher_for_PRESENT80_using_Inception_and_Efficient_Channel_Attention_in_Related-Key_Multi-Pair_Setting.png"
 
 summary: "Một bài viết giới thiệu về nghiên cứu đầu tiên của mình trong lĩnh vực cryptanalysis: khám phá cách tăng cường Neural Distinguishers thông qua Related-Key Setting và Multiple Ciphertext Pairs."
+lang: "vi"
 ---
 
 ### Vì sao bài báo này quan trọng với mình
@@ -42,10 +43,10 @@ Những năm gần đây, **Neural Differential Cryptanalysis** xuất hiện nh
 ## Giới hạn của Single-Pair Learning
 
 Phần lớn Neural Distinguisher ban đầu chỉ làm việc với **một cặp ciphertext (Ciphertext Pair)** tại một thời điểm.  
-Hướng tiếp cận này — khởi đầu bởi Gohr — đã cho thấy neural network có thể học được những bias rất tinh tế sinh ra trong quá trình differential propagation.
+Hướng tiếp cận này - khởi đầu bởi Gohr - đã cho thấy neural network có thể học được những bias rất tinh tế sinh ra trong quá trình differential propagation.
 
 Nhưng khi số round tăng lên, **tín hiệu trong một cặp duy nhất trở nên quá yếu**.  
-Noise thống kê bắt đầu chiếm ưu thế — và việc học trở nên khó tin cậy.
+Noise thống kê bắt đầu chiếm ưu thế - và việc học trở nên khó tin cậy.
 
 Vậy nên câu hỏi tự nhiên xuất hiện:
 
@@ -57,7 +58,7 @@ Nghiên cứu này khai thác **hai cách bổ sung để tăng cường tín hi
 
 Thứ nhất là **Related-Key Setting**.  
 Thay vì mã hoá dưới một secret key, ta cho phép mã hoá dưới hai key khác nhau **nhưng có quan hệ xác định trước**.  
-Mô hình này có lịch sử lâu dài trong classical cryptanalysis — vì nó để lộ mối tương tác giữa cipher và key schedule.
+Mô hình này có lịch sử lâu dài trong classical cryptanalysis - vì nó để lộ mối tương tác giữa cipher và key schedule.
 
 Thứ hai là **Multiple Ciphertext Pairs per Sample**.  
 Thay vì phân loại từng cặp riêng lẻ, model quan sát **nhiều cặp liên quan với nhau cùng lúc**, từ đó kết hợp nhiều tín hiệu yếu thành một pattern mạnh hơn.
@@ -77,13 +78,13 @@ Mục tiêu của công trình hoàn toàn có chủ đích:
 Mà là xem liệu **input representation giàu thông tin hơn + kiến trúc model hợp lý hơn** có giúp Neural Distinguisher phân biệt được cipher ở số round sâu hơn hay không.
 
 
-## Kiến trúc — như một quyết định thiết kế
+## Kiến trúc - như một quyết định thiết kế
 
 Thay vì theo đuổi những model cực sâu và nặng, nghiên cứu này ưu tiên **một kiến trúc gọn nhưng biểu đạt tốt**.
 
 Neural Distinguisher được thiết kế với ba thành phần:
 
-Một khối convolution kiểu **Inception** giúp xử lý dữ liệu ở nhiều “scale” đồng thời — từ đó học được cả pattern cục bộ và pattern rộng hơn trên nhiều ciphertext pair.
+Một khối convolution kiểu **Inception** giúp xử lý dữ liệu ở nhiều “scale” đồng thời - từ đó học được cả pattern cục bộ và pattern rộng hơn trên nhiều ciphertext pair.
 
 **Efficient Channel Attention (ECA)** được dùng để nhấn mạnh các channel quan trọng, nhưng **không làm tăng đáng kể độ phức tạp của model**.  
 Quan điểm thiết kế là: attention nên sắc bén, nhưng không lấn át toàn bộ kiến trúc.
@@ -92,7 +93,7 @@ Cuối cùng, **Residual Connections** giữ cho việc huấn luyện ổn đ�
 
 ![Model Architecture](/blog/RKNDMCP/Model_Architecture.png)
 
-Kết quả là một model gọn nhẹ — nhưng tối đa hoá khả năng trích xuất cấu trúc từ dữ liệu mật mã vốn nhiều nhiễu.
+Kết quả là một model gọn nhẹ - nhưng tối đa hoá khả năng trích xuất cấu trúc từ dữ liệu mật mã vốn nhiều nhiễu.
 
 
 ## Experiments cho thấy điều gì?
@@ -116,17 +117,17 @@ Một model train tại **round 9** vẫn duy trì accuracy **cao hơn random đ
 
 Trong cryptanalysis, điều này rất đáng chú ý.
 
-## Công trình này nói — và không nói — điều gì?
+## Công trình này nói - và không nói - điều gì?
 
 Nghiên cứu này **không phá PRESENT-80**.  
 Nó cũng **không đề xuất key-recovery attack mới**.
 
-Thông điệp của nó khiêm tốn hơn — nhưng có ý nghĩa:
+Thông điệp của nó khiêm tốn hơn - nhưng có ý nghĩa:
 
 > **Input có cấu trúc + kiến trúc model phù hợp → Neural Distinguisher có thể đi sâu hơn, ngay cả trong môi trường hạn chế.**
 
 Đồng thời, nghiên cứu cũng nhấn mạnh **giới hạn của Neural Cryptanalysis**:  
-khi số round đủ lớn, **diffusion** xoá nhòa mọi cấu trúc có thể học được — kể cả trong Related-Key Setting.
+khi số round đủ lớn, **diffusion** xoá nhòa mọi cấu trúc có thể học được - kể cả trong Related-Key Setting.
 
 Hiểu được **khi nào việc học thất bại** cũng quan trọng không kém **khi nào nó thành công**.
 
@@ -136,6 +137,6 @@ Hiểu được **khi nào việc học thất bại** cũng quan trọng không
 > Một Distinguisher không dạy ta cách phá cipher.  
 > Nó cho ta biết liệu còn điều gì để hiểu hay không.
 
-Project này là hành trình học cách lắng nghe những tín hiệu rất nhỏ — và chấp nhận rằng sẽ tới lúc chúng biến mất.
+Project này là hành trình học cách lắng nghe những tín hiệu rất nhỏ - và chấp nhận rằng sẽ tới lúc chúng biến mất.
 
 ---
