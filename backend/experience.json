@@ -1,39 +1,48 @@
 [
-{
-  "title": "System & Network Engineer",
-  "company": "Ozitem",
-  "period": "4/2024 - Present",
-  "desc": "Managing and optimizing corporate network infrastructure to ensure high availability and security. Implementing ITSM practices and internal automation initiatives.",
-  "highlights": [
-    "Administering virtualized systems, VMware ESXi environments, and enterprise network infrastructure.",
-    "Diagnosing and resolving incidents to maintain service continuity across production systems.",
-    "Implementing ITSM workflows and documentation to improve operational efficiency.",
-    "Exploring automation and AI-driven solutions (Power BI, Python, internal tools) to modernize infrastructure monitoring and reporting."
-  ],
-  "tech": ["VMware", "Veeam", "Windows Server", "Networking", "ITSM", "Power BI", "Automation"]
-}
-,
-{
-  "title": "Computer Science Student",
-  "company": "HUTECH University",
-  "period": "8/2022 - Present",
-  "desc": "Learning foundational and core concepts in computer science, software development, and modern computing systems.",
-  "highlights": [
-    "Studying core CS subjects such as data structures, algorithms, operating systems, and computer networks.",
-    "Learning software engineering principles, design patterns, and full-stack development basics.",
-    "Gaining hands-on experience with databases, distributed systems fundamentals, and system design concepts.",
-    "Exploring introductory AI, machine learning, and mathematical foundations for computing."
-  ],
-  "tech": [
-    "Python",
-    "Java",
-    "Data Structures",
-    "Algorithms",
-    "Operating Systems",
-    "Computer Networks",
-    "Databases",
-    "Software Engineering"
-  ]
-}
-
+  {
+    "title": "System & Network Engineer",
+    "company": {
+      "name": "Ozitem",
+      "link": "https://www.groupeozitem.com/"
+    },
+    "logo": "/logo/ozitem_logo.jpg",
+    "period": "4/2025 - Present",
+    "desc": "Providing first-line operational support for enterprise IT infrastructure, including virtualized environments, Windows servers, and corporate networks. Monitoring systems, handling incidents via ITSM workflows, and performing routine maintenance to ensure service availability.",
+    "highlights": [
+      "Monitoring infrastructure and responding to alerts to maintain service continuity.",
+      "Performing initial troubleshooting and resolution based on procedures and runbooks.",
+      "Supporting daily operations in VMware ESXi and Windows Server environments.",
+      "Verifying and reviewing backup jobs using Veeam to support data protection readiness.",
+      "Documenting procedures and operational notes to improve ITSM knowledge sharing.",
+      "Assisting senior engineers with escalations and infrastructure change activities.",
+      "Exploring automation and reporting improvements using Power BI, Python, and internal tools."
+    ],
+    "tech": ["VMware", "Veeam", "Windows Server", "Networking", "ITSM", "Power BI", "Automation"]
+  },
+  {
+    "title": "Computer Science Student",
+    "company": {
+      "name": "HUTECH University",
+      "link": "https://hutech.edu.vn"
+    },
+    "logo": "/logo/hutech.png",
+    "period": "8/2022 - Present",
+    "desc": "Building a strong foundation in computer science, software development, and modern computing systems through coursework and hands-on learning.",
+    "highlights": [
+      "Studying core CS subjects such as algorithms, data structures, operating systems, and computer networks.",
+      "Learning software engineering principles and fundamentals of backend and full-stack development.",
+      "Gaining practical exposure to databases, distributed systems concepts, and system design.",
+      "Exploring introductory AI, machine learning, and theoretical foundations of computing."
+    ],
+    "tech": [
+      "Python",
+      "Java",
+      "Data Structures",
+      "Algorithms",
+      "Operating Systems",
+      "Computer Networks",
+      "Databases",
+      "Software Engineering"
+    ]
+  }
 ]

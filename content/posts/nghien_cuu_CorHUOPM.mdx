@@ -1,0 +1,144 @@
+---
+title: "CorHUOPM: Khai phá các Utility Pattern có ý nghĩa thông qua Correlation"
+date: "2025-12-18"
+readTime: "7 min"
+category: "Research"
+tags:
+  - Data Mining
+  - Pattern Mining
+  - Research Project
+heroImage: "/projects/CNTT_27_My_CorHUOPM_2024-2025_page-0001_full.jpg"
+summary: "Một bài viết giới thiệu về CorHUOPM — thuật toán kết hợp yếu tố correlation vào High Utility Occupancy Pattern Mining để tìm ra các pattern có ý nghĩa và dễ diễn giải hơn."
+---
+
+### Vì sao bài báo này quan trọng với mình
+> *Đây là project nghiên cứu nghiêm túc đầu tiên của mình cho Hội nghị Nghiên cứu khoa học của trường. Mình không còn làm trong mảng này nữa, nhưng nó đã định hình cách mình suy nghĩ về vấn đề và đóng góp khoa học.*
+
+# CorHUOPM: Khai phá các Utility Pattern có ý nghĩa thông qua Correlation
+
+> Trong pattern mining, tìm được *pattern quan trọng* không có nghĩa là tìm được *pattern có ý nghĩa*.
+
+Bài viết này giới thiệu **CorHUOPM** — một nghiên cứu xuất phát từ một câu hỏi rất đơn giản nhưng dai dẳng:  
+*khi một pattern có vẻ “giá trị” trong dữ liệu, liệu nó có thực sự đại diện cho một mối quan hệ có ý nghĩa hay không?*
+
+Thay vì đi sâu vào toàn bộ chi tiết kỹ thuật của bài báo, mình sẽ tập trung vào **động cơ nghiên cứu**, **ý tưởng cốt lõi**, và **những phát hiện chính** của công trình này.
+
+
+
+## Khi “utility” là chưa đủ
+
+High Utility Itemset Mining được đề xuất để vượt ra ngoài khái niệm “tần suất xuất hiện”.  
+Thay vì chỉ đếm một itemset xuất hiện bao nhiêu lần, nó quan tâm đến việc itemset đó *quan trọng đến mức nào*, thường tính theo profit hoặc weight.
+
+High Utility Occupancy Pattern Mining (HUOPM) tiến thêm một bước nữa khi xem xét mức độ **chiếm ưu thế (occupancy)** của itemset trong các transaction chứa nó.  
+Một pattern có thể profitable, nhưng nếu chỉ đóng góp một tỷ lệ nhỏ trong utility của transaction, thì ý nghĩa thực tế của nó là rất hạn chế.
+
+Tuy nhiên, ngay cả với cải tiến này, vẫn còn một hạn chế lớn.
+
+Một pattern có thể đạt utility cao nhưng lại **ít liên hệ thực sự** giữa các item.
+
+Các item có thể xuất hiện cùng nhau đủ nhiều để vượt qua ngưỡng utility, nhưng vẫn không tạo thành một mối quan hệ chặt chẽ hoặc dễ diễn giải.  
+Trong thực tế — đặc biệt là market basket analysis — những pattern như vậy rất khó bảo vệ hoặc ra quyết định dựa trên chúng.
+
+
+
+## Yếu tố còn thiếu: Correlation
+
+Quan sát cốt lõi phía sau CorHUOPM rất đơn giản.
+
+Utility cho ta biết *pattern quan trọng đến mức nào*.  
+Occupancy cho ta biết *pattern đó chiếm ưu thế đến đâu*.  
+Nhưng cả hai **không nói gì về mức độ gắn kết giữa các item**.
+
+Correlation giúp lấp đầy khoảng trống này.
+
+![results](/blog/RKNDMCP/All_confidence_metrics.png)
+
+Các thước đo correlation như **AllConfidence** và **Bond** giúp xác định liệu các item có thực sự “đi cùng nhau” hay không, thay vì chỉ vô tình xuất hiện chung do đặc điểm dữ liệu.
+
+Bỏ qua yếu tố này thường dẫn đến các kết quả **đúng về mặt số liệu nhưng yếu về mặt ngữ nghĩa**.
+
+CorHUOPM được thiết kế để đưa **correlation** trực tiếp vào quá trình utility occupancy mining.
+
+
+## Từ HUOPM đến CorHUOPM
+
+CorHUOPM mở rộng HUOPM bằng cách tích hợp **correlation constraint** ngay trong quá trình khai phá, thay vì lọc kết quả ở bước cuối.
+
+Sự tích hợp này rất quan trọng.
+
+Khi áp dụng ngưỡng correlation ngay trong quá trình tìm kiếm, thuật toán sẽ tránh việc khám phá những nhánh search space vốn chắc chắn sẽ dẫn đến các pattern yếu hoặc gây hiểu nhầm.
+
+CorHUOPM hỗ trợ hai thước đo correlation:
+
+AllConfidence ưu tiên các pattern mà item của chúng **thường xuyên xuất hiện cùng nhau một cách ổn định** so với các subset.  
+Bond thì khắt khe hơn, so sánh tần suất xuất hiện chung với tần suất xuất hiện rời rạc.
+
+Cả hai đều phản ánh những cách khác nhau để định nghĩa một pattern là *coherent*.
+
+
+## Thuật toán thực sự thay đổi điều gì?
+
+Ở góc nhìn tổng thể, CorHUOPM không “tái phát minh” HUOPM.
+
+Nó vẫn dựa trên cấu trúc **UO-List** và chiến lược tìm kiếm depth-first.  
+Điểm khác biệt nằm ở **mức độ pruning các pattern không tiềm năng**.
+
+Correlation-based pruning hoạt động song song với utility-occupancy bound.  
+Những pattern không đạt yêu cầu correlation sẽ bị loại sớm — trước khi phải tính toán tốn kém.
+
+Kết quả không chỉ là **ít pattern hơn**, mà còn là một **bộ pattern có chất lượng khác hẳn**.
+
+
+## Các phát hiện quan trọng từ thực nghiệm
+
+Các thí nghiệm được thực hiện trên nhiều bộ dữ liệu thực tế thường dùng trong pattern mining.
+
+Kết quả cho thấy ba xu hướng rõ rệt.
+
+Thứ nhất, CorHUOPM tạo ra **số lượng pattern ít hơn đáng kể so với HUOPM**.  
+Đây không phải là sự “mất mát”, mà là sự **tinh lọc** — các pattern còn lại chặt chẽ và dễ diễn giải hơn.
+
+Thứ hai, **việc chọn thước đo correlation rất quan trọng**.  
+AllConfidence cho một sự cân bằng tốt giữa số lượng và độ gắn kết.  
+Bond nghiêm ngặt hơn, làm bộ pattern gọn và rõ ràng hơn.
+
+Thứ ba, dù bổ sung ràng buộc, CorHUOPM thường **chạy nhanh hơn HUOPM**.  
+Nhờ pruning hiệu quả, rất nhiều nhánh tìm kiếm được loại bỏ sớm — đặc biệt ở ngưỡng cao.
+
+Nhìn chung, việc đưa correlation vào không chỉ **cải thiện chất lượng pattern**, mà còn **tăng hiệu năng tính toán**.
+
+
+## Ý nghĩa thực tế
+
+Trong ứng dụng thực tế, pattern mining hiếm khi hướng tới việc “tìm càng nhiều pattern càng tốt”.
+
+Điều quan trọng là tìm ra **những pattern có thể giải thích, tin tưởng và sử dụng được**.
+
+Bằng cách tích hợp correlation trực tiếp vào utility occupancy mining, CorHUOPM chuyển trọng tâm từ **số lượng** sang **ý nghĩa**.
+
+Pattern vì thế:
+- dễ bảo vệ hơn trước stakeholders  
+- phù hợp hơn cho ra quyết định (ví dụ: product placement, recommendation, promotion analysis)
+
+
+## Nhìn về phía trước
+
+CorHUOPM không phải là câu trả lời cuối cùng, mà là một bước tiến.
+
+Hướng phát triển tiếp theo có thể gồm:
+- mở rộng cho **dynamic database**
+- hỗ trợ thêm các thước đo correlation khác
+- áp dụng cho **sequential / temporal pattern mining**
+
+Mỗi hướng đi đều đặt ra câu hỏi mới về **mối quan hệ giữa meaning — utility — structure trong dữ liệu**.
+
+
+## Closing thought
+
+> Trong pattern mining, “relevance” không chỉ là câu chuyện của con số.  
+> Nó còn là câu chuyện của mối quan hệ.
+
+CorHUOPM là một nỗ lực để làm rõ những mối quan hệ đó — và đưa các pattern lại gần hơn với cách con người thực sự suy nghĩ về dữ liệu.
+
+---

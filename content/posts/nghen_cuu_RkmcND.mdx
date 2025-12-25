@@ -1,0 +1,141 @@
+---
+title: "Learning to Distinguish: Một nghiên cứu Neural Cryptanalysis trên PRESENT-80"
+date: "2025-12-18"
+readTime: "8 min"
+category: "Research"
+tags:
+  - Cryptanalysis
+  - Neural Cryptography
+  - Research Project
+heroImage: "/projects/Improved_Neural_Distinguisher_for_PRESENT80_using_Inception_and_Efficient_Channel_Attention_in_Related-Key_Multi-Pair_Setting.png"
+
+summary: "Một bài viết giới thiệu về nghiên cứu đầu tiên của mình trong lĩnh vực cryptanalysis: khám phá cách tăng cường Neural Distinguishers thông qua Related-Key Setting và Multiple Ciphertext Pairs."
+---
+
+### Vì sao bài báo này quan trọng với mình
+
+Đây là bước chân đầu tiên của mình vào thế giới **cryptanalysis**.  
+Và cũng là lần đầu tiên công trình của mình được phản biện, chất vấn, và cuối cùng là chấp nhận trong một hội nghị nghiên cứu.
+
+# Learning to Distinguish: Một nghiên cứu Neural Cryptanalysis trên PRESENT-80
+
+Bài viết này giới thiệu nghiên cứu đầu tiên của mình trong lĩnh vực cryptanalysis, và cũng là bài báo đầu tiên được chấp nhận tại một hội nghị học thuật.  
+Thay vì đi sâu vào chi tiết kỹ thuật, bài viết tập trung vào **câu hỏi nghiên cứu**, **ý tưởng cốt lõi**, và **những điều mình học được** từ công trình này.
+
+
+## Vì sao Distinguishers lại quan trọng
+
+Các block cipher hiện đại được thiết kế để **trông giống như random permutation**.  
+Nếu một thuật toán mã hoá thực sự an toàn, đầu ra của nó phải **không thể phân biệt được** với random.
+
+> Trong cryptanalysis, khả năng phân biệt (distinguish) thường là tín hiệu đầu tiên cho thấy cấu trúc vẫn còn tồn tại.
+
+Cryptanalysis vì thế thường **không bắt đầu bằng việc phá key**.  
+Thay vào đó, câu hỏi nền tảng hơn là:  
+*liệu ta có thể phân biệt cipher này với random hay không?*
+
+Một **Distinguisher** không khôi phục key.  
+Nó chỉ cho thấy liệu **dư âm của cấu trúc nội tại** có còn sót lại sau nhiều round mã hoá hay không.
+
+Những năm gần đây, **Neural Differential Cryptanalysis** xuất hiện như một hướng tiếp cận mới: để neural network tự học các bias thống kê còn tồn tại, mà không cần phải tự xây dựng Differential Characteristic.
+
+## Giới hạn của Single-Pair Learning
+
+Phần lớn Neural Distinguisher ban đầu chỉ làm việc với **một cặp ciphertext (Ciphertext Pair)** tại một thời điểm.  
+Hướng tiếp cận này — khởi đầu bởi Gohr — đã cho thấy neural network có thể học được những bias rất tinh tế sinh ra trong quá trình differential propagation.
+
+Nhưng khi số round tăng lên, **tín hiệu trong một cặp duy nhất trở nên quá yếu**.  
+Noise thống kê bắt đầu chiếm ưu thế — và việc học trở nên khó tin cậy.
+
+Vậy nên câu hỏi tự nhiên xuất hiện:
+
+*Điều gì sẽ xảy ra nếu ta cho model quan sát nhiều cấu trúc hơn cùng lúc?*
+
+## Hai nguồn “cấu trúc bổ sung”
+
+Nghiên cứu này khai thác **hai cách bổ sung để tăng cường tín hiệu học**.
+
+Thứ nhất là **Related-Key Setting**.  
+Thay vì mã hoá dưới một secret key, ta cho phép mã hoá dưới hai key khác nhau **nhưng có quan hệ xác định trước**.  
+Mô hình này có lịch sử lâu dài trong classical cryptanalysis — vì nó để lộ mối tương tác giữa cipher và key schedule.
+
+Thứ hai là **Multiple Ciphertext Pairs per Sample**.  
+Thay vì phân loại từng cặp riêng lẻ, model quan sát **nhiều cặp liên quan với nhau cùng lúc**, từ đó kết hợp nhiều tín hiệu yếu thành một pattern mạnh hơn.
+
+![Data presentation](/blog/RKNDMCP/Data_Presentation.png)
+
+Hai ý tưởng này chuyển bài toán từ việc nhận ra “artifact rời rạc” sang việc nhận ra **structured correlation**.
+
+
+## PRESENT-80 như một môi trường thử nghiệm
+
+Nghiên cứu tập trung vào lightweight block cipher **PRESENT-80**.  
+Cấu trúc đơn giản và deterministic key schedule của cipher này khiến nó trở thành lựa chọn phù hợp để nghiên cứu hiệu ứng related-key trong môi trường neural.
+
+Mục tiêu của công trình hoàn toàn có chủ đích:  
+**không phải key-recovery attack**.  
+Mà là xem liệu **input representation giàu thông tin hơn + kiến trúc model hợp lý hơn** có giúp Neural Distinguisher phân biệt được cipher ở số round sâu hơn hay không.
+
+
+## Kiến trúc — như một quyết định thiết kế
+
+Thay vì theo đuổi những model cực sâu và nặng, nghiên cứu này ưu tiên **một kiến trúc gọn nhưng biểu đạt tốt**.
+
+Neural Distinguisher được thiết kế với ba thành phần:
+
+Một khối convolution kiểu **Inception** giúp xử lý dữ liệu ở nhiều “scale” đồng thời — từ đó học được cả pattern cục bộ và pattern rộng hơn trên nhiều ciphertext pair.
+
+**Efficient Channel Attention (ECA)** được dùng để nhấn mạnh các channel quan trọng, nhưng **không làm tăng đáng kể độ phức tạp của model**.  
+Quan điểm thiết kế là: attention nên sắc bén, nhưng không lấn át toàn bộ kiến trúc.
+
+Cuối cùng, **Residual Connections** giữ cho việc huấn luyện ổn định hơn.
+
+![Model Architecture](/blog/RKNDMCP/Model_Architecture.png)
+
+Kết quả là một model gọn nhẹ — nhưng tối đa hoá khả năng trích xuất cấu trúc từ dữ liệu mật mã vốn nhiều nhiễu.
+
+
+## Experiments cho thấy điều gì?
+
+Kết quả thực nghiệm cho thấy một điều nhất quán:
+
+> **Càng nhiều cấu trúc đầu vào, khả năng phân biệt càng tốt.**
+
+Việc dùng **Multiple Ciphertext Pairs** giúp cải thiện rõ rệt khả năng distinguish ở mọi round được thử nghiệm.  
+Khi thêm **Related-Key Difference**, hiệu ứng này còn mạnh hơn nữa.
+
+![results](/blog/RKNDMCP/result.png)
+
+So với các Neural Distinguisher liên quan trước đây, phương pháp này:
+
+- đạt accuracy tốt hơn ở round 7 → 9  
+- và quan trọng hơn: **vẫn giữ được khả năng phân biệt vượt ra ngoài round được train**
+
+Một model train tại **round 9** vẫn duy trì accuracy **cao hơn random đôi chút** cho tới round 15.  
+Điều này **không phải attack thực tế**, nhưng nó cho thấy model **không chỉ học pattern đặc thù tại round train**.
+
+Trong cryptanalysis, điều này rất đáng chú ý.
+
+## Công trình này nói — và không nói — điều gì?
+
+Nghiên cứu này **không phá PRESENT-80**.  
+Nó cũng **không đề xuất key-recovery attack mới**.
+
+Thông điệp của nó khiêm tốn hơn — nhưng có ý nghĩa:
+
+> **Input có cấu trúc + kiến trúc model phù hợp → Neural Distinguisher có thể đi sâu hơn, ngay cả trong môi trường hạn chế.**
+
+Đồng thời, nghiên cứu cũng nhấn mạnh **giới hạn của Neural Cryptanalysis**:  
+khi số round đủ lớn, **diffusion** xoá nhòa mọi cấu trúc có thể học được — kể cả trong Related-Key Setting.
+
+Hiểu được **khi nào việc học thất bại** cũng quan trọng không kém **khi nào nó thành công**.
+
+
+## Closing thought
+
+> Một Distinguisher không dạy ta cách phá cipher.  
+> Nó cho ta biết liệu còn điều gì để hiểu hay không.
+
+Project này là hành trình học cách lắng nghe những tín hiệu rất nhỏ — và chấp nhận rằng sẽ tới lúc chúng biến mất.
+
+---

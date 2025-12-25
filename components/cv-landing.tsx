@@ -22,11 +22,15 @@ interface CVLandingProps {
 
   experience: {
     title: string
-    company: string
+    company: {
+      name: string
+      link?: string
+    }
     period: string
     desc: string
     highlights?: string[]   
     tech?: string[]        
+    logo?: string
   }[]
 
   projects: {
@@ -147,9 +151,50 @@ export function CVLanding({ avatars, hero, skills, experience, projects }: CVLan
 
           {/* Experience Content */}
           <div className="pb-8">
-            <h3 className="text-xl font-bold">{job.title}</h3>
-            <p className="text-slate-600 dark:text-slate-400 font-medium">{job.company}</p>
-            <p className="text-sm text-slate-500 dark:text-slate-500 mb-3">{job.period}</p>
+
+            {/* Header */}
+            <div className="grid grid-cols-[1fr_6rem] gap-4 items-start">
+              {/* LEFT */}
+              <div>
+                <h3 className="text-xl font-bold">
+                  {job.title}
+                </h3>
+
+                <p className="text-slate-800 dark:text-slate-400 font-medium">
+                  {job.company.link ? (
+                    <a href={job.company.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                      {job.company.name}
+                    </a>
+                  ) : (
+                    job.company.name
+                  )}
+                </p>
+
+                <p className="text-sm text-slate-500 dark:text-slate-500">
+                  {job.period}
+                </p>
+              </div>
+
+              {/* RIGHT — fixed-width logo column */}
+              {job.logo && (
+                job.company.link ? (
+                  <a href={job.company.link} target="_blank" rel="noopener noreferrer" className="block w-full h-16">
+                    <img
+                      src={job.logo}
+                      alt={`${job.company.name} logo`}
+                      className="w-full h-16 object-contain rounded"
+                    />
+                  </a>
+                ) : (
+                  <img
+                    src={job.logo}
+                    alt={`${job.company.name} logo`}
+                    className="w-full h-16 object-contain rounded"
+                  />
+                )
+              )}
+
+            </div>
 
             {/* Desc */}
             <p className="text-slate-700 dark:text-slate-300 mb-4">{job.desc}</p>
