@@ -1,0 +1,93 @@
+---
+title: "Bắt đầu với Networking (4): The Home Network"
+date: "2025-12-XX"
+readTime: "7 min"
+category: "Networking"
+tags:
+  - Networking
+  - Home Network
+  - Fundamentals
+heroImage: "/blog/getting_started_4_home_network/Homenetwork.jpg"
+summary: "Giới thiệu về mạng gia đình, tập trung vào các thiết bị phổ biến, ranh giới mạng và cách lưu lượng dữ liệu di chuyển giữa mạng nội bộ và mạng bên ngoài."
+lang: "vi"
+---
+
+## Home Network là gì?
+
+**Home network** (mạng gia đình) là một mạng quy mô nhỏ kết nối các thiết bị trong một hộ gia đình với nhau và với Internet. Mục đích chính của nó là cho phép nhiều thiết bị dùng chung một kết nối Internet duy nhất, đồng thời cho phép giao tiếp nội bộ giữa chúng.
+
+Trong môi trường gia đình, các thiết bị như máy tính, điện thoại, tivi và các thiết bị thông minh (smart appliances) được kỳ vọng sẽ kết nối một cách liền mạch. Home network chính là cấu trúc tạo nên sự liền mạch đó.
+
+![WLAN](/blog/getting_started_4_home_network/WLAN.jpg)
+
+Khác với việc chỉ có một thiết bị duy nhất kết nối trực tiếp với Internet, một home network mang đến sự điều phối (**coordination**). Lưu lượng dữ liệu (traffic) phải được quản lý, chia sẻ và định hướng để các thiết bị có thể giao tiếp cả trong nội bộ lẫn ra bên ngoài.
+
+Chính vì thế, một home network không chỉ đơn thuần là "truy cập Internet". Nó là một hệ thống mạng hoàn chỉnh, vận hành ở quy mô nhỏ nhưng vẫn tuân theo những nguyên tắc cơ bản giống như các hệ thống mạng lớn hơn.
+
+## Các thiết bị cốt lõi trong một Home Network
+
+Một home network được xây dựng từ một số ít các thiết bị cốt lõi, mỗi thiết bị đảm nhận một vai trò cụ thể. Trong nhiều gia đình, các vai trò này được tích hợp vào một thiết bị vật lý duy nhất, nhưng về mặt khái niệm, chúng vẫn tách biệt.
+
+![Home network devices](/blog/getting_started_4_home_network/devices.png)
+
+**Modem** là thiết bị kết nối mạng gia đình với Nhà cung cấp dịch vụ Internet (ISP). Nó dịch các tín hiệu từ mạng của nhà cung cấp thành dạng mà các thiết bị trong nhà có thể sử dụng được.
+
+**Router** chịu trách nhiệm định hướng lưu lượng dữ liệu giữa các thiết bị và các mạng. Nó quyết định dữ liệu nên đi đâu, dù đích đến là một thiết bị khác trong nhà hay là một dịch vụ bên ngoài trên Internet.
+
+**Wireless access point** (điểm truy cập không dây) cho phép các thiết bị kết nối vào mạng gia đình mà không cần cáp vật lý. Nó phát ra tín hiệu không dây để các thiết bị gần đó có thể gia nhập mạng.
+
+**End devices** (thiết bị cuối) là những thiết bị mà người dùng tương tác trực tiếp. Chúng bao gồm máy tính, điện thoại thông minh, máy tính bảng, tivi thông minh, máy in và các thiết bị kết nối khác.
+
+Mặc dù nhiều router gia đình hiện nay tích hợp cả **modem**, **router**, và **wireless access point** vào một thiết bị duy nhất, việc hiểu rõ vai trò của từng thành phần sẽ giúp làm rõ cách thức toàn bộ mạng gia đình vận hành.
+
+## Network Boundary (Ranh giới mạng)
+
+Một home network có một ranh giới rõ ràng ngăn cách các thiết bị bên trong ngôi nhà với các mạng bên ngoài như Internet. Ranh giới này xác định thiết bị nào thuộc về mạng riêng nội bộ và cách thức dữ liệu được phép ra vào.
+
+Hiểu về ranh giới mạng giúp giải thích cách các thiết bị giao tiếp nội bộ, cách truy cập Internet hoạt động, và tại sao một số hành vi mạng nhất định lại xảy ra.
+
+### Bên trong (Inside) và Bên ngoài (Outside) Home Network
+
+Các thiết bị bên trong home network tạo thành một mạng nội bộ riêng tư (**private internal network**). Những thiết bị này thường có thể giao tiếp trực tiếp với nhau mà không cần rời khỏi mạng gia đình.
+
+Mạng bên ngoài (**External networks**) bao gồm Internet và các mạng khác nằm ngoài phạm vi hộ gia đình. Việc giao tiếp với các mạng này đòi hỏi lưu lượng dữ liệu phải đi qua một điểm thoát cụ thể.
+
+Sự phân biệt giữa "trong" và "ngoài" mang tính khái niệm hơn là vật lý. Nó tồn tại để tổ chức luồng dữ liệu và tách biệt giao tiếp riêng tư khỏi các mạng công cộng.
+
+### Default Gateway
+
+**Default gateway** là thiết bị điều phối dữ liệu từ mạng gia đình ra các mạng bên ngoài. Khi một thiết bị cần giao tiếp với một đích đến nằm ngoài mạng cục bộ, nó sẽ gửi dữ liệu đó đến **default gateway**.
+
+Từ góc nhìn của các **end devices**, default gateway đại diện cho con đường dẫn đến mọi thứ nằm ngoài mạng gia đình. Các thiết bị không cần biết chi tiết về các mạng bên ngoài, chúng chỉ cần biết nơi để gửi dữ liệu đi.
+
+![Default Gateway](/blog/getting_started_4_home_network/defaultgateway.jpg)
+
+Trong một mạng gia đình, **router** thường đóng vai trò là thiết bị ranh giới này. Nó kết nối mạng nội bộ với Internet và quản lý lưu lượng di chuyển giữa chúng. Router quyết định xem dữ liệu nên ở lại trong mạng gia đình hay được chuyển tiếp đến một đích đến bên ngoài.
+
+Nó cũng đóng vai trò cơ bản trong việc ngăn các thiết bị nội bộ tiếp xúc trực tiếp với Internet. Bằng cách vừa là điểm kết nối vừa là ranh giới, router cho phép mạng gia đình hoạt động như một mạng riêng tư trong khi vẫn tiếp cận được các dịch vụ công cộng.
+
+## Local vs Internet Communication
+
+Trong một mạng gia đình, không phải mọi hoạt động giao tiếp đều đi theo cùng một con đường. Một số trao đổi dữ liệu diễn ra hoàn toàn bên trong mạng, trong khi những trao đổi khác phải bước qua ranh giới mạng để đến với các mạng bên ngoài. Sự khác biệt phụ thuộc vào vị trí của đích đến.
+
+**Local communication** (giao tiếp nội bộ) đề cập đến dữ liệu được trao đổi giữa các thiết bị bên trong mạng gia đình.
+
+Lưu lượng này nằm gọn trong mạng nội bộ và không đi qua **default gateway**. Các thiết bị như máy tính, máy in và tivi thông minh có thể giao tiếp trực tiếp với nhau miễn là chúng thuộc cùng một mạng.
+
+**Internet communication** xảy ra khi một thiết bị cần tiếp cận một dịch vụ bên ngoài mạng gia đình.
+
+Trong trường hợp này, dữ liệu được gửi đến router, sau đó router chuyển tiếp nó qua **default gateway** để đi vào Internet. Truy cập trang web, xem video trực tuyến hoặc gửi email đều yêu cầu loại giao tiếp này.
+
+Ví dụ: khi một chiếc laptop truyền (stream) một video từ tivi thông minh trong cùng một nhà, dữ liệu đó mang tính cục bộ (local). 
+
+Nhưng khi chính chiếc laptop đó xem video từ một dịch vụ trực tuyến (như Netflix hay YouTube), dữ liệu sẽ rời khỏi mạng gia đình, đi qua router và phụ thuộc vào kết nối Internet. Hiểu được sự khác biệt này giúp giải thích tại sao một số hoạt động vẫn tiếp tục hoạt động ngay cả khi kết nối Internet bị mất.
+
+## Lời kết
+
+Mạng gia đình không chỉ là một tập hợp các thiết bị được kết nối với nhau. Nó là một hệ thống mạng hoàn chỉnh, với các vai trò được xác định rõ ràng, ranh giới cụ thể và các con đường giao tiếp riêng biệt.
+
+Bằng cách hiểu rõ mục đích của các thiết bị phổ biến, sự tách biệt giữa mạng nội bộ và mạng bên ngoài, cũng như sự khác biệt giữa giao tiếp nội bộ và Internet, các hành vi mạng hàng ngày sẽ trở nên dễ hiểu hơn.
+
+Góc nhìn nền tảng này về home network cung cấp một điểm tham chiếu thực tế. Nó giúp giải thích các vấn đề kết nối thường gặp và chuẩn bị cho người đọc khám phá những khái niệm nâng cao hơn về networking một cách rõ ràng hơn.
+
+---

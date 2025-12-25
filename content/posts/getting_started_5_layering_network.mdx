@@ -1,0 +1,138 @@
+---
+title: "Getting Started with Networking (5): Why Networks Are Layered"
+date: "2025-12-XX"
+readTime: "7 min"
+category: "Networking"
+tags:
+  - Networking
+  - Network Models
+  - Fundamentals
+heroImage: "/blog/getting_started_5_layering_network/hero.png"
+summary: "An introduction to network layering, explaining why networks are organized into layers and how this approach helps manage complexity."
+---
+
+## Introduction
+
+As networks evolve, the sheer number of moving parts—from physical fiber-optic cables to complex software algorithms—makes it nearly impossible to manage as a single entity. If we tried to build the Internet as one giant, monolithic program, a single change to a Wi-Fi chip would require rewriting every web browser in existence.
+
+To prevent this chaos, we need a **structured way** to design and understand how these systems interact.
+
+
+## The Idea of Layering
+
+The most elegant solution to complexity is a strategy called **layering**.
+
+In networking, layering is the process of breaking a complex communication system into smaller, distinct parts. Instead of one technology trying to do everything, the system is divided into a stack.
+
+This approach is built on three core principles:
+
+- **Specific Responsibility:** Each layer has a single, well-defined job. One layer might only care about electrical signals, while another only cares about finding the best path across the globe.
+- **Abstraction:** A layer does not need to know *how* the layer below it works; it only needs to know *what* service it provides. This is much like how a driver doesn't need to understand internal combustion to use a car's accelerator.
+- **Clear Separation of Tasks:** Because each layer is independent, you can replace or upgrade one layer without affecting the others. This is why you can switch from a wired Ethernet connection to Wi-Fi without having to change the website you are currently browsing.
+
+By organizing networks this way, we shift our focus from an overwhelming “everything-at-once” perspective to a manageable, step-by-step understanding of the system.
+
+
+## Network Models as Layered Representations
+
+To make the concept of layering practical, we use **network models**. Think of these models as blueprints or universal maps that define how different systems should talk to one another.
+
+Without these shared models, a laptop made by one company might not be able to understand a router made by another. The most influential map ever created for this purpose is the OSI model.
+
+
+### The OSI Model
+
+The **OSI (Open Systems Interconnection) Model** was developed by the International Organization for Standardization (ISO) in the late 1970s. Its goal was ambitious: to create a universal set of rules so that any computer system, anywhere in the world, could communicate with any other.
+
+![OSI model](/blog/getting_started_5_layering_network/OSI.jpg)
+
+
+### The Seven-Layer Concept
+
+The OSI model breaks the complex journey of data into seven distinct layers. While we will explore the specific technical functions of these layers in later posts, it is important to first see them as a hierarchy:
+
+- **Layer 7 – Application:** User interaction  
+- **Layer 6 – Presentation:** Data formatting and encryption  
+- **Layer 5 – Session:** Managing connections  
+- **Layer 4 – Transport:** Reliability and flow control  
+- **Layer 3 – Network:** Routing and logical addressing  
+- **Layer 2 – Data Link:** Local physical addressing  
+- **Layer 1 – Physical:** Hardware and signals  
+
+### A Reference and Learning Tool
+
+In the modern world, the OSI model is often described as a theoretical framework.
+
+Interestingly, the actual software and hardware we use today does not follow the OSI model exactly. However, the model remains the most important educational reference for several reasons:
+
+- **A Common Language:** Engineers can quickly locate problems by layer, regardless of vendor or technology.
+- **Standardization:** It provides a shared reference for interoperability.
+- **Conceptual Clarity:** It separates physical transmission from application behavior, making complex systems easier to reason about.
+
+The OSI model is like an anatomy textbook for networking: you may not see these layers directly in code, but understanding them is essential to knowing how the system functions.
+
+### The TCP/IP Model
+
+The **TCP/IP Model** (also known as the Internet Protocol Suite) was developed by the U.S. Department of Defense in the 1970s. Unlike OSI, which was designed as a theoretical standard, TCP/IP was built for practicality and resilience.
+
+While OSI is the academic map, TCP/IP is the architecture that actually built the Internet.
+
+### A Practical Consolidation
+
+The TCP/IP model simplifies the seven OSI layers into four major layers:
+
+- **Application Layer:** Combines OSI Layers 5–7  
+- **Transport Layer:** Maps to OSI Layer 4  
+- **Internet Layer:** Maps to OSI Layer 3  
+- **Network Access Layer:** Combines OSI Layers 1–2  
+
+![TCP/IP model](/blog/getting_started_5_layering_network/TCP.jpg)
+
+### Why TCP/IP Won
+
+TCP/IP succeeded because it worked first and scaled effectively:
+
+- Implementation came before formal standardization  
+- It was flexible across different hardware  
+- It scaled from a research network to the global Internet  
+
+In practice, we **describe** networks using OSI but **build** them using TCP/IP.
+
+### What Layers Do: A High-Level Overview
+
+**Application Interaction**  
+Translates user actions into network requests.
+
+**Delivery Strategy**  
+Determines whether data should be reliable or best-effort.
+
+**Logical Addressing and Routing**  
+Assigns addresses and finds paths across networks.
+
+**Physical Delivery**  
+Moves bits as electrical signals, light, or radio waves.
+
+### Why Layering Helps Troubleshooting
+
+Layering allows engineers to isolate problems logically.
+
+Failures at lower layers usually affect everything above them, while failures at higher layers leave the lower layers intact.
+
+Examples include:
+
+- **Layer 1:** Cable unplugged, no signal  
+- **Layer 3:** Can reach local devices but not the Internet  
+- **Layer 7:** Website or service unavailable  
+
+This structure enables a systematic troubleshooting process instead of random trial-and-error.
+
+
+## Closing Thought
+
+Layering is the quiet foundation of the digital age.
+
+It explains why a phone designed in one country can communicate with a server in another through infrastructure built by countless organizations. Understanding layering is not about memorizing models, but about recognizing that complex systems depend on clear separation of responsibility.
+Before diving into specific protocols, understanding this structure provides the mental map that makes everything else in networking easier to grasp.
+
+---
+

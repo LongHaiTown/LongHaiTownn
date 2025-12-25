@@ -55,13 +55,13 @@ export function SiteHeader() {
             </a>
           </nav>
         </div>
-        <button
+        {/* <button
           onClick={() => setTheme(isDark ? "light" : "dark")}
           className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
           aria-label="Toggle dark mode"
         >
           {isDark ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
+        </button> */}
       </div>
     </header>
   )

@@ -1,0 +1,133 @@
+---
+title: "Bắt đầu với Networking (5): Tại sao Network cần được phân lớp?"
+date: "2025-12-XX"
+readTime: "7 min"
+category: "Networking"
+tags:
+  - Networking
+  - Network Models
+  - Fundamentals
+heroImage: "/blog/getting_started_5_layering_network/hero.png"
+summary: "Giới thiệu về khái niệm phân lớp trong mạng máy tính (network layering), giải thích lý do tại sao các network được tổ chức theo lớp và cách tiếp cận này giúp quản lý sự phức tạp như thế nào."
+lang: "vi"
+---
+
+## Giới thiệu
+
+Khi các network ngày càng phát triển, số lượng các thành phần chuyển động—từ cáp quang vật lý cho đến các thuật ngữ phần mềm phức tạp—khiến việc quản lý chúng như một thực thể đơn nhất trở nên gần như bất khả thi. Nếu chúng ta cố gắng xây dựng Internet như một chương trình khổng lồ, nguyên khối (**monolithic**), thì chỉ một thay đổi nhỏ đối với chip Wi-Fi cũng sẽ đòi hỏi phải viết lại mọi trình duyệt web hiện có trên đời.
+
+Để ngăn chặn sự hỗn loạn này, chúng ta cần một **cách tiếp cận có cấu trúc** để thiết kế và thấu hiểu cách các hệ thống này tương tác với nhau.
+
+## Ý tưởng về sự phân lớp (Layering)
+
+Giải pháp thanh lịch nhất cho sự phức tạp chính là chiến lược **phân lớp (layering)**.
+
+Trong networking, layering là quá trình chia nhỏ một hệ thống giao tiếp phức tạp thành các phần nhỏ hơn, riêng biệt. Thay vì để một công nghệ duy nhất cố gắng xử lý mọi thứ, hệ thống được chia thành một chồng các lớp (**stack**).
+
+Cách tiếp cận này được xây dựng trên ba nguyên tắc cốt lõi:
+
+- **Specific Responsibility (Trách nhiệm cụ thể):** Mỗi lớp có một nhiệm vụ duy nhất và được xác định rõ ràng. Một lớp có thể chỉ quan tâm đến tín hiệu điện, trong khi lớp khác chỉ lo tìm con đường tốt nhất để đi khắp thế giới.
+- **Abstraction (Sự trừu tượng hóa):** Một lớp không cần biết lớp bên dưới nó hoạt động *như thế nào*; nó chỉ cần biết lớp đó cung cấp dịch vụ *gì*. Điều này rất giống với việc người lái xe không cần hiểu về động cơ đốt trong để sử dụng bàn đạp ga của ô tô.
+- **Clear Separation of Tasks (Tách biệt nhiệm vụ rõ ràng):** Vì mỗi lớp là độc lập, bạn có thể thay thế hoặc nâng cấp một lớp mà không làm ảnh hưởng đến các lớp khác. Đây là lý do tại sao bạn có thể chuyển từ kết nối Ethernet có dây sang Wi-Fi mà không cần phải thay đổi trang web bạn đang duyệt.
+
+Bằng cách tổ chức các network theo cách này, chúng ta chuyển trọng tâm từ một cái nhìn "mọi thứ cùng một lúc" đầy choáng ngợp sang một cách hiểu hệ thống từng bước một, dễ quản lý hơn.
+
+## Network Models: Sự biểu diễn của các phân lớp
+
+Để đưa khái niệm phân lớp vào thực tế, chúng ta sử dụng các **network models** (mô hình mạng). Hãy coi những mô hình này như những bản thiết kế hoặc bản đồ chung định nghĩa cách các hệ thống khác nhau giao tiếp với nhau.
+
+Nếu không có những mô hình chung này, một chiếc máy tính xách tay của hãng này sản xuất có thể sẽ không thể hiểu được một chiếc router do hãng khác chế tạo. "Bản đồ" có ảnh hưởng nhất từng được tạo ra cho mục đích này chính là mô hình OSI.
+
+### Mô hình OSI
+
+**Mô hình OSI (Open Systems Interconnection)** được phát triển bởi Tổ chức Tiêu chuẩn hóa Quốc tế (ISO) vào cuối những năm 1970. Mục tiêu của nó rất tham vọng: tạo ra một bộ quy tắc phổ quát để bất kỳ hệ thống máy tính nào, ở bất kỳ đâu trên thế giới, cũng có thể giao tiếp với bất kỳ hệ thống nào khác.
+
+![OSI model](/blog/getting_started_5_layering_network/OSI.jpg)
+
+### Khái niệm 7 lớp
+
+Mô hình OSI chia hành trình phức tạp của dữ liệu thành 7 lớp riêng biệt. Mặc dù chúng ta sẽ khám phá các chức năng kỹ thuật cụ thể của các lớp này trong các bài viết sau, nhưng điều quan trọng trước tiên là phải nhìn thấy chúng dưới dạng một hệ thống phân cấp:
+
+- **Layer 7 – Application:** Tương tác với người dùng
+- **Layer 6 – Presentation:** Định dạng và mã hóa dữ liệu
+- **Layer 5 – Session:** Quản lý các phiên kết nối
+- **Layer 4 – Transport:** Độ tin cậy và kiểm soát luồng
+- **Layer 3 – Network:** Định tuyến và địa chỉ logic
+- **Layer 2 – Data Link:** Địa chỉ vật lý cục bộ
+- **Layer 1 – Physical:** Phần cứng và tín hiệu
+
+### Một công cụ tham chiếu và học tập
+
+Trong thế giới hiện đại, mô hình OSI thường được mô tả như một khung lý thuyết (**theoretical framework**).
+
+Thú vị là, các phần mềm và phần cứng thực tế mà chúng ta sử dụng ngày nay không tuân theo chính xác mô hình OSI. Tuy nhiên, nó vẫn là tài liệu tham khảo giáo dục quan trọng nhất vì nhiều lý do:
+
+- **Ngôn ngữ chung:** Các kỹ sư có thể nhanh chóng xác định vị trí sự cố theo lớp, bất kể nhà cung cấp hay công nghệ là gì.
+- **Tiêu chuẩn hóa:** Nó cung cấp một tham chiếu chung cho khả năng tương tác giữa các hệ thống (**interoperability**).
+- **Sự rõ ràng về khái niệm:** Nó tách biệt việc truyền dẫn vật lý khỏi hành vi của ứng dụng, giúp các hệ thống phức tạp trở nên dễ lập luận hơn.
+
+Mô hình OSI giống như một cuốn sách giáo khoa về giải phẫu cho networking: bạn có thể không nhìn thấy các lớp này trực tiếp trong mã nguồn, nhưng hiểu chúng là điều thiết yếu để biết hệ thống vận hành như thế nào.
+
+### Mô hình TCP/IP
+
+**Mô hình TCP/IP** (còn được gọi là Internet Protocol Suite) được Bộ Quốc phòng Hoa Kỳ phát triển vào những năm 1970. Không giống như OSI được thiết kế như một tiêu chuẩn lý thuyết, TCP/IP được xây dựng vì tính thực tế và khả năng phục hồi (**resilience**).
+
+Nếu OSI là bản đồ học thuật, thì TCP/IP chính là kiến trúc thực sự đã xây dựng nên Internet.
+
+### Một sự hợp nhất thực tế
+
+Mô hình TCP/IP đơn giản hóa 7 lớp của OSI thành 4 lớp chính:
+
+- **Application Layer:** Kết hợp các lớp 5, 6 và 7 của OSI.
+- **Transport Layer:** Tương ứng với lớp 4 của OSI.
+- **Internet Layer:** Tương ứng với lớp 3 của OSI.
+- **Network Access Layer:** Kết hợp các lớp 1 và 2 của OSI.
+
+![TCP/IP model](/blog/getting_started_5_layering_network/TCP.jpg)
+
+### Tại sao TCP/IP giành chiến thắng?
+
+TCP/IP thành công vì nó hoạt động hiệu quả ngay từ đầu và có khả năng mở rộng tốt:
+
+- Việc triển khai thực tế có trước khi các tiêu chuẩn chính thức được ban hành.
+- Nó linh hoạt trên các loại phần cứng khác nhau.
+- Nó đã mở rộng thành công từ một mạng nghiên cứu nhỏ thành mạng Internet toàn cầu.
+
+Trong thực tế, chúng ta dùng OSI để **mô tả** các network nhưng dùng TCP/IP để **xây dựng** chúng.
+
+### Các lớp làm nhiệm vụ gì: Tổng quan mức cao
+
+**Application Interaction (Tương tác ứng dụng)**
+Chuyển đổi các hành động của người dùng thành các yêu cầu mạng.
+
+**Delivery Strategy (Chiến lược phân phối)**
+Xác định xem dữ liệu nên được truyền theo cách tin cậy (**reliable**) hay nỗ lực tối đa (**best-effort**).
+
+**Logical Addressing and Routing (Địa chỉ logic và Định tuyến)**
+Gán địa chỉ và tìm đường đi xuyên qua các mạng.
+
+**Physical Delivery (Truyền tải vật lý)**
+Di chuyển các bit dưới dạng tín hiệu điện, ánh sáng hoặc sóng vô tuyến.
+
+### Tại sao phân lớp giúp giải quyết sự cố (Troubleshooting)
+
+Phân lớp cho phép các kỹ sư cô lập các vấn đề một cách logic.
+
+Các lỗi ở lớp dưới thường ảnh hưởng đến tất cả các lớp phía trên chúng, trong khi các lỗi ở lớp cao hơn thường để lại các lớp bên dưới nguyên vẹn.
+
+Ví dụ:
+- **Layer 1:** Cáp bị rút, không có tín hiệu.
+- **Layer 3:** Có thể truy cập các thiết bị cục bộ nhưng không vào được Internet.
+- **Layer 7:** Trang web hoặc dịch vụ cụ thể không khả dụng.
+
+Cấu trúc này cho phép một quy trình xử lý sự cố có hệ thống thay vì thử-sai một cách ngẫu nhiên.
+
+## Lời kết
+
+> Phân lớp chính là nền móng thầm lặng của kỷ nguyên kỹ thuật số.
+
+Nó giải thích tại sao một chiếc điện thoại được thiết kế ở quốc gia này có thể giao tiếp với một máy chủ ở quốc gia khác thông qua cơ sở hạ tầng được xây dựng bởi vô số tổ chức khác nhau. Hiểu về phân lớp không phải là việc học thuộc lòng các mô hình, mà là nhận ra rằng các hệ thống phức tạp luôn phụ thuộc vào sự phân tách trách nhiệm rõ ràng.
+
+Trước khi đi sâu vào các giao thức cụ thể, việc nắm vững cấu trúc này sẽ cung cấp cho bạn một "bản đồ tư duy", giúp mọi thứ khác trong networking trở nên dễ nắm bắt hơn nhiều.
+
+---

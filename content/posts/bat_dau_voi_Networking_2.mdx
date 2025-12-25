@@ -1,0 +1,132 @@
+---
+title: "Bắt đầu với Networking (2): Centralized vs Peer-to-Peer"
+date: "2025-12-XX"
+readTime: "9 min"
+category: "Networking"
+tags:
+  - Networking
+  - Systems
+  - Architecture
+heroImage: "/blog/getting_started_2_p2p_vs_centralized/client-server-vs-p2p.png"
+summary: "Một sự so sánh mang tính phản tư giữa centralized và peer-to-peer networks, tập trung vào quyền kiểm soát, lòng tin và hành vi hệ thống thay vì các triển khai kỹ thuật."
+lang : "vi"
+
+---
+
+# Centralized vs Peer-to-Peer
+
+Trước khi những cuộc thảo luận về networking trở nên nặng tính kỹ thuật, chúng hầu như luôn hội tụ về một sự phân biệt quen thuộc: **centralized systems** (hệ thống tập trung) đối đầu với **peer-to-peer systems** (hệ thống ngang hàng).
+
+Sự phân biệt này thường được trình bày như một lựa chọn thuần túy về mặt kiến trúc (**architecture**), nhưng trong thực tế, nó mã hóa những giả định sâu sắc hơn nhiều về sự điều phối, lòng tin và quyền kiểm soát bên trong các hệ thống lớn.
+
+Bài viết này tiếp cận **centralized** và **peer-to-peer networks** không phải như các công nghệ đối đầu nhau, mà như hai câu trả lời khác nhau cho cùng một vấn đề cốt lõi: sự điều phối nên diễn ra như thế nào khi nhiều thành phần độc lập phải tương tác với nhau.
+
+## Sự điều phối (Coordination) như một vấn đề cốt lõi
+
+Mọi network, bất kể quy mô hay mục đích, tồn tại là để điều phối hoạt động giữa các thực thể vốn không thể hành động đơn độc.
+
+Sự điều phối bao gồm việc quyết định nơi thông tin luân chuyển, cách các quyết định được đưa ra, và cách các xung đột hoặc sai sót được giải quyết.
+
+Cấu trúc kiến trúc của một network sẽ xác định cách các quyết định này được phân bổ trong toàn hệ thống.
+
+**Centralized** và **peer-to-peer networks** đại diện cho hai chiến lược điều phối khác biệt căn bản, chứ không chỉ đơn thuần là các chi tiết triển khai.
+
+## Centralized networks và sự tập trung quyền kiểm soát
+![Client_Server](/blog/getting_started_2_p2p_vs_centralized/Centralized_network.jpg)
+
+Một **centralized network** tổ chức sự điều phối xoay quanh một điểm hội tụ (focal point) – nơi sở hữu vai trò đặc quyền trong hệ thống.
+
+Thành phần trung tâm này thường tích lũy thông tin, thẩm quyền hoặc quyền ra quyết định, cho phép network hành động theo một cách có thể dự đoán và dễ quan sát.
+
+Bằng cách tập trung quyền kiểm soát, các hệ thống **centralized** giảm bớt sự mơ hồ và đơn giản hóa việc suy luận về trạng thái toàn cục (**global state**).
+
+Khi có lỗi xảy ra, trách nhiệm được xác định rõ ràng và các hành động khắc phục có thể được áp dụng một cách có mục tiêu.
+
+Tuy nhiên, chính sự tập trung tạo ra sự rõ ràng đó cũng mang lại sự mong manh (**fragility**).
+
+Khi hệ thống lớn mạnh, điểm trung tâm trở thành một điểm nghẽn (**bottleneck**) không chỉ về hiệu suất mà còn về lòng tin và độ tin cậy.
+
+Sự cố tại trung tâm sẽ lan rộng ra ngoài, ảnh hưởng đến cả những thành phần vốn đang hoạt động bình thường.
+
+Do đó, sự tập trung (centralization) đánh đổi khả năng phục hồi (**resilience**) để lấy khả năng quan sát (legibility), ưu tiên sự dễ hiểu của con người hơn là sự vững chãi của hệ thống.
+
+## Peer-to-peer networks và sự điều phối phân tán
+![P2p](/blog/getting_started_2_p2p_vs_centralized/p2p.png)
+
+**Peer-to-peer networks** (P2P) bác bỏ giả định rằng sự điều phối cần một trung tâm đặc quyền.
+
+Thay vào đó, chúng phân bổ trách nhiệm cho tất cả những người tham gia, coi các nút (**nodes**) có cấu trúc tương đương nhau trong hệ thống.
+
+Sự điều phối nảy sinh từ các tương tác cục bộ thay vì từ sự giám sát toàn cục.
+
+Sự phân tán quyền kiểm soát này cho phép các hệ thống P2P chịu đựng được những thất bại mà có thể làm tê liệt các kiến trúc **centralized**.
+
+Việc thiếu vắng một điểm lỗi duy nhất (**single point of failure**) cho phép hệ thống thích nghi thông qua sự dư thừa (redundancy), sao chép (replication) và tái cấu hình.
+
+Tuy nhiên, khả năng phục hồi này lại mang đến những dạng phức tạp mới.
+
+Nếu không có một người quan sát trung tâm, hệ thống trở nên khó giám sát, khó suy luận và khó kiểm soát.
+
+Các mạng P2P thường tỏ ra kém hiệu quả hoặc hỗn loạn ở quy mô nhỏ, bởi vì lợi thế của chúng chỉ thực sự xuất hiện khi hệ thống đủ lớn.
+
+Thứ mà chúng đạt được không phải là sự đơn giản, mà là khả năng sống sót trong điều kiện bất định.
+
+## Khả năng hiển thị, lòng tin và các giả định hệ thống
+
+Một trong những khác biệt đáng kể nhất giữa hệ thống **centralized** và **peer-to-peer** nằm ở cách khả năng hiển thị (visibility) được phân bổ.
+
+Các mạng **centralized** giả định rằng một cái nhìn toàn cục (**global view**) là khả thi và đáng mong đợi.
+
+Các mạng **peer-to-peer** giả định rằng không một người tham gia nào có thể hoặc nên quan sát toàn bộ hệ thống.
+
+Sự khác biệt này tái định hình cách lòng tin (trust) được nhúng vào kiến trúc.
+
+Hệ thống **centralized** đặt lòng tin vào các định chế hoặc cơ quan có thẩm quyền.
+
+Hệ thống **peer-to-peer** mã hóa lòng tin vào các ràng buộc cấu trúc, các giao thức (**protocols**) và các cơ chế khuyến khích (incentives).
+
+Câu hỏi chuyển từ "ai là người đáng tin" sang "những giả định nào về hành vi có thể được đưa ra một cách an toàn".
+
+## Huyền thoại về sự thuần khiết trong kiến trúc
+
+Các cuộc thảo luận về **centralized** và **peer-to-peer** thường ngầm hiểu về một sự phân đôi (dichotomy) rạch ròi.
+
+Trong thực tế, hầu hết các hệ thống đang hoạt động đều nằm ở một khoảng không gian lai (**hybrid**) giữa hai thái cực này.
+
+Họ tập trung hóa các thành phần đòi hỏi tốc độ, sự điều phối chặt chẽ hoặc giám sát; đồng thời phân tán các thành phần cần sự bền bỉ hoặc khả năng mở rộng (**scalable**).
+
+Sự lai tạo này không phải là một thất bại về mặt lý thuyết, mà là một sự phản hồi đối với các ràng buộc thực tế.
+
+Các hệ thống thuần **centralized** gặp khó khăn với quy mô và lòng tin, trong khi các hệ thống thuần **peer-to-peer** gặp khó khăn về hiệu suất và tính dễ dùng.
+
+Những hệ thống thú vị nhất là những hệ thống biết cách điều hướng sự căng thẳng giữa kiểm soát và phân tán, thay vì cam kết hoàn toàn với một bên.
+
+## Kiến trúc như một sự phản chiếu các giá trị
+
+Ở một cấp độ sâu hơn, kiến trúc mạng phản ánh các lựa chọn mang tính chuẩn mực chứ không phải các quyết định kỹ thuật trung lập.
+
+Các hệ thống **centralized** nhấn mạnh vào hiệu quả, sự rõ ràng và thẩm quyền.
+
+Các hệ thống **peer-to-peer** nhấn mạnh vào quyền tự trị, sự dư thừa và khả năng chống lại sự kiểm soát.
+
+Những sở thích này tương đồng với các mô hình rộng hơn trong thiết kế tổ chức và điều phối xã hội.
+
+Vì vậy, không ngạc nhiên khi các cuộc tranh luận về kiến trúc mạng thường song hành với các cuộc tranh luận về quản trị và quyền lực.
+
+## Tại sao sự phân biệt này lại quan trọng
+
+Hiểu về **centralized** và **peer-to-peer networks** có giá trị không phải vì những thuật ngữ này xuất hiện trong tài liệu kỹ thuật, mà bởi vì những mô hình cốt lõi này luôn lặp lại trên mọi lĩnh vực.
+
+Cùng một câu hỏi về cấu trúc đó sẽ phát sinh trong cơ sở hạ tầng, các định chế, thị trường và hệ thống thông tin.
+
+Networking cung cấp một môi trường cụ thể để những câu hỏi trừu tượng về sự điều phối và lòng tin có thể được quan sát một cách rõ ràng.
+
+## Lời kết
+
+Kiến trúc của một network không đơn thuần là một sản phẩm kỹ thuật, mà là một tuyên ngôn về cách sự điều phối, lòng tin và sự thất bại được kỳ vọng sẽ cùng tồn tại.
+
+**Centralized** và **peer-to-peer networks** không phải là những mặt đối lập, mà là những chiến lược bổ trợ để quản lý cùng một ràng buộc cơ bản.
+
+Không một hệ thống nào có thể mở rộng vô hạn mà không đưa ra những lựa chọn rõ ràng về cách quyền lực và trách nhiệm được phân bổ.
+
+---

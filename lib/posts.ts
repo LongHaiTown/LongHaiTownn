@@ -11,6 +11,7 @@ export interface PostMeta {
   tags: string[]
   heroImage?: string
   summary: string
+  lang: string
 }
 
 const POSTS_DIR = path.join(process.cwd(), 'content', 'posts')
@@ -34,6 +35,7 @@ export function getAllPosts(): PostMeta[] {
         tags: data.tags || [],
         heroImage: data.heroImage || '',
         summary: data.summary || '',
+        lang: data.lang || 'en',
       } as PostMeta
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())

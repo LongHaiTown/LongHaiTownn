@@ -1,0 +1,136 @@
+---
+title: "Bắt đầu với Networking (1): Network Types"
+date: "2025-12-16"
+readTime: "5 min"
+category: "Networking"
+tags:
+  - Networking
+  - Fundamentals
+  - Concepts
+heroImage: "/blog/getting_started_1_network_types/network_1.jpg"
+summary: "Một cái nhìn tổng quan về các loại network khác nhau, tập trung vào khái niệm thay vì các chi tiết kỹ thuật khô khan."
+lang : "vi"
+
+---
+
+# Network Types
+
+> Trước khi bàn về cách các network vận hành, chúng ta nên chậm lại một chút và tự hỏi một câu hỏi thầm lặng hơn: 
+> **Chúng ta thực sự ngụ ý điều gì khi nói về “a network”?**
+
+Series này tiếp cận networking không phải như một danh sách các công nghệ cần học thuộc, mà là một cách để thấu hiểu cách sự kết nối định hình nên các hệ thống.
+Bài viết đầu tiên này sẽ nhìn vào *network types*, không phải dưới góc độ những phân loại cứng nhắc, mà như những lăng kính giúp chúng ta thấy cùng một ý tưởng sẽ biểu hiện ra sao ở các quy mô khác nhau.
+
+## Tại sao chúng ta cần phân loại network?
+
+Khi mọi người nói về network, họ thường hiểu nhầm ý nhau.
+
+Một người đang nghĩ về Wi-Fi ở nhà.
+Người khác đang nói về cơ sở hạ tầng nội bộ (internal infrastructure) của một công ty.
+Người khác nữa lại ám chỉ Internet nói chung.
+
+Tất cả đều đúng, nhưng chúng mang lại cảm giác khác biệt về bản chất.
+
+Phân loại (classification) trong ngữ cảnh này không phải là việc dán nhãn lên đồ vật. 
+Đó là việc tạo ra một **khoảng cách về tư duy**, để chúng ta có thể nhận thấy một khái niệm duy nhất sẽ thay đổi như thế nào khi nó lớn dần lên.
+
+Một trong những lăng kính đơn giản và hữu dụng nhất để làm điều này chính là **quy mô (scale)**.
+
+## Một hệ thống lớn dần lên trước khi nó trở nên phức tạp
+
+Về cốt lõi, một network chỉ là một tập hợp các kết nối.
+Nhưng quy mô sẽ âm thầm thay đổi tất cả.
+
+Khi một network phát triển, nó không chỉ đơn thuần là kết nối thêm nhiều thứ hơn. 
+Nó tái định hình cách quyền kiểm soát vận hành, cách chúng ta trải nghiệm sự cố, và mức độ hiển thị của hệ thống đối với những người đang phụ thuộc vào nó.
+
+Nhìn qua lăng kính này, ba hình thái lớn bắt đầu xuất hiện.
+
+## Local Networks
+
+![Local Networks](/blog/getting_started_1_network_types/Local_network.jpg)
+
+Local networks là nơi mà networking mang lại cảm giác cụ thể nhất.
+
+Chúng tồn tại ngay gần chúng ta: trong nhà, văn phòng nhỏ, lớp học và quán cà phê. 
+Chúng bị giới hạn về phạm vi, rõ ràng trong hành vi và có tác động mang tính cá nhân.
+
+Khi một local network gặp sự cố, thất bại đó mang lại cảm giác tức thì và dễ hiểu. 
+Wi-Fi bị ngắt kết nối. Một thiết bị không thể truy cập thiết bị khác. Thứ gì đó vừa hoạt động cách đây một giây bỗng dưng dừng lại.
+
+Điều định nghĩa một local network không phải là công nghệ của nó, mà là **cảm giác về sự khép kín (sense of enclosure)**. 
+Có một ranh giới rõ ràng giữa bên trong và bên ngoài. 
+Thường có một cảm giác về quyền sở hữu, hoặc ít nhất là sự quen thuộc.
+
+Trong không gian này, một network ít mang cảm giác của một cơ sở hạ tầng (infrastructure) mà giống như một môi trường chia sẻ hơn. 
+Gần giống như một căn phòng nơi các thiết bị cùng tồn tại và tương tác với nhau.
+
+Đối với nhiều người, đây là nơi khái niệm về networking lần đầu tiên trở nên thực tế.
+
+## Medium to Large Networks
+
+![Medium to Large Networks](/blog/getting_started_1_network_types/Medium_to_Large_Networks.jpg)
+
+Khi các network mở rộng ra ngoài một không gian vật lý duy nhất, đặc tính của chúng bắt đầu thay đổi.
+
+Medium to large networks xuất hiện bên trong các tổ chức, trường đại học và các học viện. 
+ chúng kết nối các tòa nhà, các phòng ban và các vai trò thay vì chỉ là các thiết bị đơn lẻ.
+
+Ở quy mô này, một network không còn là thứ bạn vô tình nhận ra nữa, mà bắt đầu trở thành thứ âm thầm điều phối cách mọi thứ vận hành.
+
+Bạn không còn nhìn thấy toàn bộ network. 
+Bạn chỉ trải nghiệm vị trí của chính mình bên trong nó.
+
+Quyền truy cập (access) trở nên có chọn lọc. 
+Các ranh giới nhân lên. 
+Các quy tắc (rules) xuất hiện không phải vì ai đó muốn sự phức tạp, mà bởi vì sự phức tạp là điều không thể tránh khỏi.
+
+Nếu một local network giống như một căn phòng, thì một medium to large network giống như một tòa nhà. 
+Bạn di chuyển trong đó, nhưng bạn không bao giờ cảm nhận được toàn bộ cấu trúc của nó.
+
+Tại đây, networking trở nên không thể tách rời khỏi cấu trúc và trách nhiệm. 
+Các câu hỏi chuyển dịch từ kết nối đơn thuần sang sự phối hợp (coordination), độ tin cậy (reliability) và lòng tin (trust).
+
+## World Wide Networks
+
+![World Wide Networks](/blog/getting_started_1_network_types/World_wide_networks.jpeg)
+
+World wide networks tồn tại ở một quy mô mà trực giác của chúng ta bắt đầu trở nên không còn đủ.
+
+Internet là ví dụ rõ ràng nhất, nhưng nó không chỉ đơn thuần là một sản phẩm kỹ thuật. 
+Nó là một hệ thống toàn cầu được cấu thành từ vô số các network nhỏ hơn, và không một ai trong số đó nắm quyền kiểm soát toàn bộ.
+
+Hầu hết thời gian, chúng ta không trải nghiệm network này một cách trực tiếp. 
+Chúng ta trải nghiệm các dịch vụ lớp trên (layered services): trang web, tin nhắn, video, lưu trữ đám mây.
+
+Bản thân network trở nên vô hình, không phải vì nó đơn giản, mà vì nó quá rộng lớn.
+
+Ở quy mô này, quyền kiểm soát được phân tán, trách nhiệm bị phân mảnh và quyền sở hữu không rõ ràng. 
+Thế nhưng, sự phụ thuộc vào nó gần như là tuyệt đối.
+
+World wide networks làm mờ đi ranh giới giữa cơ sở hạ tầng và xã hội. 
+Chúng định hình giao tiếp, kinh tế, tri thức và quyền lực mà không tự thể hiện mình như một thực thể đơn nhất.
+
+Điều làm chúng trở nên thú vị không chỉ đơn giản là vì chúng tồn tại, mà là vì chúng thực sự có thể vận hành được.
+
+## Một mô hình xuyên suốt các quy mô
+
+Nhìn lại các loại network này, chúng ta thấy một mô hình lặp đi lặp lại.
+
+Khi network lớn mạnh, chúng chuyển từ trạng thái hiển hiện sang trạng thái mặc định. 
+Từ mang tính cá nhân sang mang tính tổ chức. 
+Từ chỗ có thể hiểu được sang chỗ được coi là hiển nhiên.
+
+Ý tưởng cốt lõi về sự kết nối vẫn giữ nguyên, nhưng hệ quả của nó mở rộng ra xa khỏi phạm vi kỹ thuật thuần túy.
+
+Đó là lý do tại sao nghiên cứu về network không bao giờ chỉ xoay quanh dây cáp hay các giao thức (protocols). 
+Đó là về việc các hệ thống hành xử như thế nào khi sự kết nối trở thành điều kiện mặc định của sự tồn tại.
+
+## Lời kết
+
+> Một network không trở nên mạnh mẽ vì nó phức tạp. 
+> Nó trở nên mạnh mẽ vì có quá nhiều thứ phụ thuộc vào nó.
+
+Hiểu về các network types là cách để hiểu quy mô đã biến đổi những kết nối đơn giản thành những hệ thống âm thầm định hình thế giới như thế nào.
+
+---

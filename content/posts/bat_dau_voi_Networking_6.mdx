@@ -1,0 +1,228 @@
+---
+title: "Bắt đầu với Networking (6): Internet Protocol"
+date: "2025-12-XX"
+readTime: "8 min"
+category: "Networking"
+tags:
+  - Networking
+  - IP
+  - Fundamentals
+heroImage: "/blog/getting_started_6_ip/hero.jpg"
+summary: "Giới thiệu khái niệm về Internet Protocol, tập trung vào hệ thống địa chỉ, gói tin và cách dữ liệu di chuyển giữa các mạng."
+lang: "vi"
+---
+
+## Introduction
+
+Trong những bài thảo luận trước, chúng ta đã khám phá sự tinh tế của việc **phân lớp (layering)** và cách nó cho phép các hệ thống phức tạp được quản lý như một chồng các nhiệm vụ đơn giản, độc lập. Nhưng khi đi từ lý thuyết đến thực tế, chúng ta gặp phải một vấn đề cơ bản: làm thế nào một mẩu dữ liệu thực sự tìm được đường đi qua một mạng lưới khổng lồ gồm các mạng kết nối toàn cầu?
+
+Câu trả lời nằm ở **Internet Protocol (IP)**.
+
+Trong khi các lớp vật lý đảm nhận việc truyền dẫn các bit qua dây dẫn hoặc sóng vô tuyến, Internet Protocol đóng vai trò là nền tảng phổ quát cho việc giao tiếp *giữa* các mạng. Nó là "chất keo" gắn kết hàng ngàn mạng cục bộ độc lập thành một thực thể duy nhất toàn cầu gọi là Internet.
+
+Để đạt được điều này, chúng ta phải thay đổi quan điểm về định danh. Trong môi trường cục bộ, các thiết bị có thể nhận ra nhau bằng địa chỉ vật lý (MAC address), nhưng ngay khi chúng ta muốn giao tiếp với một điểm đến cách xa hàng ngàn dặm, định danh vật lý là không đủ. Chúng ta cần một **hệ thống địa chỉ logic (logical addressing system)** — một hệ thống phản ánh vị trí của thiết bị trong kiến trúc toàn cầu thay vì chỉ cho biết nó đang sử dụng phần cứng nào. IP cung cấp danh tính logic này, cho phép sự di chuyển dữ liệu có cấu trúc, định hình nên trải nghiệm kỹ thuật số hiện đại của chúng ta.
+
+## Internet Protocol là gì?
+
+Ở dạng đơn giản nhất, **Internet Protocol (IP)** là một hệ thống để định danh thiết bị và chuyển phát dữ liệu qua các ranh giới mạng. Nếu các dây cáp vật lý là những con đường, thì IP là hệ thống bưu điện phổ quát định nghĩa cách viết địa chỉ và cách xử lý các gói hàng.
+
+### Một hệ thống cho khả năng kết nối liên mạng
+
+Vai trò chính của IP là cho phép giao tiếp **xuyên qua nhiều mạng khác nhau**. Trong khi các giao thức khác có thể xử lý cách dữ liệu di chuyển bên trong một căn phòng hoặc một tòa nhà, IP được thiết kế để băng qua "mạng của các mạng" (network of networks). Nó cung cấp một ngôn ngữ chung cho phép mạng gia đình riêng tư trao đổi thông tin với một trung tâm dữ liệu khổng lồ của tập đoàn cách đó nửa vòng trái đất.
+
+![TCP/IP model](/blog/getting_started_6_ip/Ipp.jpg)
+
+### Chuyển phát nỗ lực tối đa (Best-Effort Delivery)
+
+IP hoạt động dựa trên nguyên tắc gọi là **best-effort delivery**. Điều này có nghĩa là giao thức sẽ cố gắng hết sức để đưa một mẩu dữ liệu đến đích, nhưng nó không cung cấp bất kỳ đảm bảo nội tại nào.
+
+- Nó không kiểm tra xem dữ liệu có đến nơi an toàn hay không.
+- Nó không yêu cầu gửi lại nếu có thứ gì đó bị mất.
+- Nó không đảm bảo dữ liệu đến đúng thứ tự.
+
+Bằng cách giữ cho giao thức "đơn giản" và "không tin cậy" (unreliable) ở cấp độ này, IP vẫn duy trì được tốc độ cực nhanh và linh hoạt, nhường nhiệm vụ sửa lỗi phức tạp cho các lớp cao hơn trong stack.
+
+### Vị trí trong mô hình
+
+Trong **mô hình TCP/IP**, IP nằm ở tầng **Internet Layer**. Nó nằm trực tiếp trên tầng Network Access (xử lý phần cứng vật lý) và trực tiếp dưới tầng Transport (xử lý độ tin cậy). Vị trí "người đứng giữa" này là lý do tại sao IP thường được gọi là "vòng eo" của chiếc đồng hồ cát mạng; hầu như mọi loại dữ liệu ứng dụng đều phải đi qua IP để đến được bất cứ đâu.
+
+## Packets: Dữ liệu trong trạng thái chuyển động
+
+Hãy tưởng tượng một gói tin (packet) như một phong bì kỹ thuật số. Giống như một bức thư vật lý, một **IP packet** có một phần **header** (chứa địa chỉ "đến" và "đi") và một phần **payload** (dữ liệu thực tế đang được gửi).
+
+![TCP/IP model](/blog/getting_started_6_ip/datapacket.png)
+
+### Tại sao lại chia nhỏ dữ liệu thành các packets?
+
+Nếu bạn cố gửi một tệp 1GB lớn dưới dạng một khối dữ liệu duy nhất, bất kỳ nhiễu nhỏ nào trên đường truyền cũng sẽ làm hỏng toàn bộ quá trình truyền tải, buộc bạn phải bắt đầu lại từ con số không. Bằng cách sử dụng packets:
+
+- **Hiệu quả (Efficiency):** Nếu một packet bị mất hoặc hỏng, chỉ mẩu dữ liệu nhỏ cụ thể đó mới cần được gửi lại.
+- **Chia sẻ tài nguyên (Resource Sharing):** Nhiều thiết bị có thể dùng chung một đường dây mạng vì chúng có thể "xen kẽ" các packets của mình. Máy tính của bạn gửi một packet, sau đó điện thoại gửi một cái, rồi máy tính lại gửi cái tiếp theo.
+
+### Tính độc lập của các Packets
+
+Một trong những khía cạnh đáng ngạc nhiên nhất của IP là các **packets có tính độc lập**. Khi bạn gửi một chuỗi packets đến một điểm đến, chúng không nhất thiết phải theo sau nhau như các toa tàu.
+
+Nếu một router ở giữa đại dương bị tắc nghẽn, nó có thể gửi packet tiếp theo trong chuỗi của bạn thông qua một vệ tinh hoặc cáp khác. Do đó:
+
+- Các packets có thể đi theo các con đường khác nhau.
+- Các packets có thể đến đích không đúng thứ tự.
+
+### Khôi phục dữ liệu tại điểm đích (Reassembly)
+
+Vì IP là một giao thức chuyển phát "đơn giản", nó không lo lắng về thứ tự các packets đến nơi. Nó chỉ đơn giản là bàn giao chúng cho điểm đích khi chúng xuất hiện. Trách nhiệm của các **lớp cao hơn** (cụ thể là Transport Layer, như TCP) là nhìn vào số thứ tự (sequence numbers) trên các packets, sắp xếp chúng lại theo đúng thứ tự và yêu cầu gửi lại bất kỳ mẩu nào còn thiếu.
+
+## Địa chỉ IPv4 (Mức độ khái quát)
+
+Mặc dù khái niệm về địa chỉ rất đơn giản, nhưng định dạng phải cực kỳ nghiêm ngặt để máy móc có thể xử lý với tốc độ ánh sáng. Một **địa chỉ IPv4** thực chất là một số nhị phân 32-bit. Tuy nhiên, vì con người không giỏi đọc các chuỗi số 0 và 1 dài, chúng ta sử dụng định dạng gọi là **dotted-decimal representation** (biểu diễn thập phân có dấu chấm).
+
+![TCP/IP model](/blog/getting_started_6_ip/ipv4.jpg)
+
+Dựa trên sơ đồ được cung cấp, chúng ta có thể phân tích cấu trúc:
+
+- **Cấu trúc 32-Bit**: Toàn bộ địa chỉ bao gồm 32 bit nhị phân (0 và 1).
+- **Bốn Octets**: 32 bit này được chia thành bốn phần 8-bit. Mỗi phần 8-bit được gọi là một **Octet** hoặc một **Byte**.
+- **Chuyển đổi thập phân**: Mỗi octet được chuyển đổi thành một số thập phân từ **0 đến 255**.
+    - *Ví dụ từ hình ảnh*: Chuỗi nhị phân `10111001` chuyển đổi thành số thập phân `185`.
+- **Định dạng**: Bốn số thập phân này được ngăn cách bởi các dấu chấm.
+    - *Địa chỉ đầy đủ trong hình*: `185.107.80.231`.
+
+### Tại sao thiết kế này lại quan trọng?
+
+- **Định danh duy nhất trong mạng (Unique Addressing):** Để việc giao tiếp hoạt động, địa chỉ IP phải là duy nhất trong phạm vi cụ thể của nó. Trên Internet toàn cầu, địa chỉ **Public IP** của bạn phải là duy nhất để dữ liệu không bị gửi nhầm chỗ.
+- **Hiệu suất so với Khả năng đọc:** Trong khi con người đọc định dạng thập phân (`185.107...`), các thiết bị mạng như routers xử lý định dạng nhị phân (`10111001...`) để đưa ra quyết định định tuyến với tốc độ kinh ngạc.
+
+Sức mạnh của hệ thống 32-bit này là nó cho phép khoảng **4,3 tỷ** địa chỉ duy nhất. Vào những năm 1970, con số này dường như nhiều hơn mức thế giới cần, mặc dù sự bùng nổ của các thiết bị thông minh đã thay đổi thực tế đó.
+
+## Public IP và Private IP
+
+![TCP/IP model](/blog/getting_started_6_ip/publicvsprivate.jpg)
+
+### Địa chỉ Private IP
+
+Một **địa chỉ Private IP** được sử dụng để liên lạc *bên trong* mạng cục bộ của bạn, chẳng hạn như nhà riêng hoặc văn phòng. Các địa chỉ này không phải là duy nhất trên toàn cầu; trên thực tế, hàng triệu gia đình trên thế giới sử dụng cùng một địa chỉ nội bộ (như `192.168.1.1`).
+
+- **Sử dụng nội bộ:** Các địa chỉ này cho phép điện thoại, máy tính xách tay và TV thông minh nói chuyện với nhau và với router của bạn.
+- **Không thể định tuyến (Non-Routable):** Địa chỉ Private không thể được nhìn thấy hoặc truy cập trực tiếp từ Internet toàn cầu. Điều này tạo ra một lớp bảo mật tự nhiên cho các thiết bị của bạn.
+
+### Địa chỉ Public IP
+
+Một **địa chỉ Public IP** là một danh tính duy nhất được nhà cung cấp dịch vụ Internet (ISP) cấp cho toàn bộ ngôi nhà hoặc doanh nghiệp của bạn.
+
+- **Danh tính toàn cầu:** Trên toàn bộ Internet, không có hai thực thể nào có thể có cùng một Public IP tại cùng một thời điểm.
+- **Có thể truy cập từ Internet:** Đây là địa chỉ mà các trang web và máy chủ nhìn thấy khi bạn kết nối với chúng. Nó đóng vai trò là "cổng trước" cho mạng cục bộ của bạn.
+
+### Vai trò của NAT (Khái niệm)
+
+Bạn có thể thắc mắc: nếu máy tính xách tay của bạn có địa chỉ private mà internet không thể thấy, làm thế nào bạn xem được YouTube?
+
+Điều này được thực hiện nhờ một công nghệ gọi là **NAT (Network Address Translation)**. Router của bạn đóng vai trò là người thông dịch: nó lấy dữ liệu từ thiết bị nội bộ, "dán nhãn" bằng địa chỉ Public IP duy nhất của bạn và gửi nó ra internet. Khi phản hồi quay trở lại, router nhớ thiết bị nội bộ nào đã yêu cầu và chuyển dữ liệu về đúng người.
+
+Hệ thống này cho phép hàng trăm thiết bị trong một tòa nhà dùng chung chỉ **một** địa chỉ Public IP quý giá.
+
+## Mạng IP và Sự phân đoạn (Khái niệm)
+
+IP được thiết kế để nhóm các thiết bị vào các "khu vực" logic gọi là **mạng (networks)**. Việc nhóm này là nền tảng cho cách dữ liệu di chuyển trên khắp thế giới.
+
+### IP nhóm các thiết bị vào các mạng
+
+Thay vì coi mọi thiết bị trên trái đất là một phần của một căn phòng khổng lồ, IP phân đoạn chúng. Một mạng là một tập hợp các thiết bị có thể giao tiếp trực tiếp với nhau mà không cần người trung gian tìm kiếm chúng.
+
+- **Giao tiếp cục bộ (Local Communication):** Các thiết bị trong cùng một mạng IP (như máy tính và máy in ở nhà) có thể "nói chuyện" trực tiếp vì chúng có chung một tiền tố mạng (network prefix).
+- **Danh tính mạng:** Một địa chỉ IP thực chất chứa hai mẩu thông tin: **Network ID** (bạn thuộc khu vực nào) và **Host ID** (bạn là ngôi nhà cụ thể nào).
+
+![TCP/IP model](/blog/getting_started_6_ip/groupfunctionsegmentation.jpg)
+
+### Tại sao lại phân đoạn mạng (Segment Networks)?
+
+Các quản trị viên mạng sử dụng sự **phân đoạn** (thường gọi là **subnetting**) để nhóm các thiết bị và dịch vụ dựa trên các tiêu chí logic như **vị trí (location)**, **nhóm hoặc chức năng (group or function)**, hoặc **loại thiết bị (device type)**. Cấu trúc này mang lại một số lợi ích quan trọng:
+
+- **Cải thiện hiệu suất:** Bằng cách giảm lưu lượng mạng tổng thể, phân đoạn giúp mạng hoạt động hiệu quả hơn.
+- **Tăng cường bảo mật:** Phân đoạn cho phép quản trị viên thực thi các chính sách bảo mật nghiêm ngặt, định nghĩa chính xác các **subnets** nào được phép giao tiếp với nhau.
+- **Kiểm soát Broadcast:** Nó giới hạn số lượng thiết bị bị ảnh hưởng bởi lưu lượng **broadcast** bất thường do cấu hình sai, lỗi phần cứng/phần mềm hoặc ý đồ xấu.
+
+### Routers: Những điểm kết nối
+
+Một **Router** là một thiết bị chuyên dụng nằm ở ranh giới giữa hai hoặc nhiều mạng.
+
+- **Bộ điều phối giao thông:** Khi thiết bị của bạn muốn gửi dữ liệu đến một địa chỉ IP *không* nằm trong mạng cục bộ, nó sẽ gửi dữ liệu đó đến router.
+- **Xác định ranh giới:** Từ góc nhìn của IP, một router định nghĩa nơi một mạng kết thúc và một mạng khác bắt đầu. Nó đóng vai trò là "gateway" (cổng) mà các packets phải đi qua để ra thế giới bên ngoài.
+
+Bằng cách tổ chức thế giới thành các mạng IP nhỏ hơn, các routers chỉ cần biết cách để đi tới một "mạng" thay vì mọi thiết bị riêng lẻ trên trái đất, giúp việc định tuyến toàn cầu trở nên khả thi.
+
+![TCP/IP model](/blog/getting_started_6_ip/routers.jpg)
+
+## **IPv6 (Giới thiệu mức độ khái quát)**
+
+Trong khi IPv4 là nền tảng của Internet thời kỳ đầu, nó có một giới hạn vật lý không thể bỏ qua: số lượng địa chỉ hiện có. Điều này dẫn đến sự ra đời của **IPv6 (Internet Protocol version 6)** để cuối cùng thay thế và bổ sung cho người tiền nhiệm.
+
+### **Động lực: Sự cạn kiệt địa chỉ IPv4**
+
+Với khoảng 4,3 tỷ địa chỉ, IPv4 dường như là vô tận vào những năm 1970. Tuy nhiên, sự bùng nổ của điện thoại thông minh, thiết bị IoT (nhà thông minh, cảm biến công nghiệp) và dân số toàn cầu đã khiến nguồn tài nguyên này cạn kiệt. IPv6 được thiết kế để giải quyết vấn đề này vĩnh viễn.
+
+### **Không gian địa chỉ khổng lồ**
+
+Sự khác biệt lớn nhất nằm ở độ dài của địa chỉ:
+
+- **IPv4:** Sử dụng **32-bit**, tạo ra khoảng $2^{32}$ (4,3 tỷ) địa chỉ.
+- **IPv6:** Sử dụng **128-bit**, tạo ra khoảng $2^{128}$ địa chỉ.
+
+Để dễ hình dung, số lượng địa chỉ IPv6 lớn đến mức chúng ta có thể gán hàng triệu địa chỉ cho mỗi mét vuông trên bề mặt Trái đất. Điều này đảm bảo rằng chúng ta sẽ không bao giờ hết địa chỉ lần nữa trong tương lai gần.
+
+### **Đặc điểm định dạng**
+
+![TCP/IP model](/blog/getting_started_6_ip/ipv6.jpg)
+
+- **Cấu trúc:** Thay vì số thập phân và dấu chấm, IPv6 sử dụng số **thập lục phân (hexadecimal)** ngăn cách bởi dấu hai chấm (`:`).
+- **Ví dụ:** `2001:0db8:85a3:0000:0000:8a2e:0370:7334`
+
+### **Sự chung sống với IPv4**
+
+Bạn không cần phải "chọn" giữa IPv4 và IPv6. Trong thế giới thực ngày nay:
+
+- **Cùng tồn tại (Coexistence):** Cả hai giao thức hoạt động song song trên Internet toàn cầu.
+- **Dual Stack:** Hầu hết các thiết bị hiện đại (như điện thoại hoặc máy tính) đều hỗ trợ "Dual Stack", nghĩa là chúng có thể hiểu và sử dụng cả hai loại địa chỉ cùng một lúc.
+- **Khái niệm:** Bạn không cần phải là chuyên gia về IPv6 để hiểu về mạng cơ bản, nhưng bạn phải công nhận nó là giải pháp cho phép Internet tiếp tục mở rộng quy mô.
+
+## Những gì IP không làm
+
+Theo thiết kế, IP là một giao thức **không hướng kết nối (connectionless)** và **không tin cậy (unreliable)**. Nó để lại một số nhiệm vụ quan trọng cho các lớp cao hơn trong stack (như TCP hoặc UDP):
+
+- **IP không đảm bảo chuyển phát:** Nếu một router bị quá tải hoặc một sợi dây bị đứt, IP sẽ đơn giản là bỏ rơi packet đó. Nó sẽ không thông báo cho người gửi hoặc cố gắng khôi phục dữ liệu bị mất.
+- **IP không đảm bảo thứ tự:** Các packets có thể đi theo các con đường khác nhau qua Internet. Do đó, Packet B có thể đến trước Packet A. IP không có cơ chế sắp xếp chúng lại theo trình tự ban đầu.
+- **IP không kiểm tra tính toàn vẹn của dữ liệu:** Trong khi IP kiểm tra lỗi trong header của chính nó, nó không xác minh xem "payload" thực tế (ảnh hoặc tin nhắn của bạn) có bị hỏng trong quá trình vận chuyển hay không.
+- **IP không quản lý ứng dụng:** IP không biết bạn đang xem video, gửi email hay tải một trang web. Nó chỉ nhìn thấy các packets có địa chỉ.
+
+### Tại sao sự thiếu sót này lại là một điều tốt?
+
+Nếu IP cố gắng làm tất cả những việc này, nó sẽ trở nên "nặng nề" và chậm chạp. Bằng cách giữ cho IP đơn giản, Internet duy trì được tốc độ cực nhanh và khả năng mở rộng. Chúng ta sử dụng **Transport Layer** (Lớp 4) để xử lý các tính năng "còn thiếu" này:
+
+- **TCP** thêm độ tin cậy và thứ tự cho những thứ như trang web.
+- **UDP** duy trì tốc độ cho những thứ như chơi game hoặc video trực tiếp, nơi mà một chút mất mát dữ liệu là có thể chấp nhận được.
+
+## Tại sao IP lại quan trọng?
+
+Internet Protocol không chỉ là một bộ quy tắc; nó là nền tảng của khả năng tương tác toàn cầu. Không có IP, thế giới kỹ thuật số hiện đại như chúng ta biết sẽ không tồn tại.
+
+- **Ngôn ngữ chung:** IP cho phép một chiếc điện thoại thông minh ở Việt Nam giao tiếp với một máy chủ ở Hoa Kỳ, bất kể thương hiệu, phần cứng hay hệ điều hành được sử dụng ở hai đầu.
+- **Khả năng mở rộng:** Vì IP đơn giản và có thứ bậc, Internet đã có thể phát triển từ một dự án nghiên cứu nhỏ thành một mạng toàn cầu gồm hàng tỷ thiết bị mà không cần thiết kế lại từ đầu.
+- **Tính độc lập:** IP cho phép hàng ngàn mạng độc lập (ISP, trường đại học và tập đoàn) làm việc cùng nhau. Nó cho phép họ quản lý phần cứng nội bộ của riêng mình trong khi vẫn là một phần của tổng thể toàn cầu.
+
+## Key Takeaways
+
+Nếu bạn chỉ nhớ một vài điều về IP, hãy để đó là những điều này:
+
+- **Addressing + Delivery:** Công việc chính của IP là cung cấp **danh tính logic** (địa chỉ) và di chuyển các **packets** qua các mạng khác nhau.
+- **Logic vs. Physical:** Địa chỉ IP (logic) cho thế giới biết bạn đang ở đâu trên mạng, trong khi địa chỉ MAC (vật lý) định danh phần cứng của bạn là ai.
+- **Routers là những người dẫn đường:** Routers sử dụng Destination IP để di chuyển các packets theo kiểu **từng chặng (hop-by-hop)** về phía mạng chính xác.
+- **Dịch vụ nỗ lực tối đa (Best-Effort Service):** IP được xây dựng vì tốc độ, không phải sự hoàn hảo. Nó chuyển phát packets nhưng dựa vào các lớp cao hơn (như TCP) để sửa lỗi hoặc sắp xếp lại dữ liệu.
+
+## Closing Thought
+
+> IP là khung xương thầm lặng của giao tiếp toàn cầu.
+
+Nó là một hệ thống có khả năng phục hồi đáng kinh ngạc, đã tồn tại qua nhiều thập kỷ thay đổi công nghệ. Từ thời đại của modem quay số (dial-up) đến kỷ nguyên của 5G và internet vệ tinh, Internet Protocol vẫn là sợi chỉ xuyên suốt kết nối tất cả chúng ta.
+
+Bằng cách hiểu về IP, giờ đây bạn đã nắm vững "ở đâu" và "ai" trong networking. Trong bài viết tiếp theo, chúng ta sẽ xem xét cái "như thế nào" — cụ thể là **Transport Layer**, nơi chúng ta khám phá cách các giao thức như TCP đảm bảo rằng các packets này thực sự đến nơi một cách trọn vẹn.
+
+---
